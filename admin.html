@@ -165,42 +165,43 @@
         });
     </script>
     
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
-        authDomain: "support-infinityearning.firebaseapp.com",
-        projectId: "support-infinityearning",
-    };
-    
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    
-    // ADD VIDEO TO FIREBASE
-    function addNewVideo() {
-        const title = document.getElementById('vidTitle').value;
-        const category = document.getElementById('vidCategory').value;
-        const link = document.getElementById('vidLink').value;
-        
-        if (!title || !link) {
-            alert("Fill all fields!");
-            return;
-        }
-        
-        db.collection("videos").add({
-            title: title,
-            category: category,
-            link: link,
-            createdAt: new Date()
-        }).then(() => {
-            alert("Video Added!");
-            document.getElementById('vidTitle').value = '';
-            document.getElementById('vidLink').value = '';
-        });
+const firebaseConfig = {
+  apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
+  authDomain: "support-infinityearning.firebaseapp.com",
+  projectId: "support-infinityearning",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// GLOBAL FUNCTION (important)
+window.addNewVideo = async function () {
+    const title = document.getElementById('vidTitle').value;
+    const category = document.getElementById('vidCategory').value;
+    const link = document.getElementById('vidLink').value;
+
+    if(!title || !link){
+        alert("Fill all fields!");
+        return;
     }
+
+    try {
+        await addDoc(collection(db, "videos"), {
+            title,
+            category,
+            link,
+            createdAt: new Date()
+        });
+
+        alert("Video Added Successfully!");
+    } catch(e){
+        alert("Error: " + e);
+    }
+}
 </script>
 </body>
 </html>
