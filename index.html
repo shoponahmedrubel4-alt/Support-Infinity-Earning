@@ -816,18 +816,12 @@ function getVideoId(url){
         id = url.split("v=")[1];
     }
 
-    // 🔥 REMOVE EXTRA PARAMS
-    if(id.includes("?")){
-        id = id.split("?")[0];
-    }
-
-    if(id.includes("&")){
-        id = id.split("&")[0];
-    }
+    // 🔥 remove extra params like ?si= or &...
+    if(id.includes("?")) id = id.split("?")[0];
+    if(id.includes("&")) id = id.split("&")[0];
 
     return id;
 }
-
 const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
 
 onSnapshot(q,(snapshot)=>{
@@ -841,7 +835,7 @@ onSnapshot(q,(snapshot)=>{
         <div class="video-card">
             <div class="thumb-wrapper">
                 <img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg"
-                onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'">
+onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'">
                 <span class="video-tag">${v.category}</span>
             </div>
 
