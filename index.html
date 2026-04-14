@@ -840,6 +840,9 @@ onSnapshot(q, (snapshot) => {
 
     videoList.innerHTML = ""; // reset
 
+    console.log("VIDEO LINK:", v.link);
+console.log("VIDEO ID:", vid);
+    
     if(snapshot.empty){
         videoList.innerHTML = "<p style='color:#aaa;text-align:center'>No videos found</p>";
         return;
