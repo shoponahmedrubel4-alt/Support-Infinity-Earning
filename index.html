@@ -424,6 +424,8 @@
     </div>
 
     <section class="video-section">
+    <div id="videoList">Loading videos...</div>
+</section>
         <div class="video-card">
             <div class="thumb-wrapper">
                 <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Thumb">
@@ -824,10 +826,28 @@ function getVideoId(url){
 }
 const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
 
-onSnapshot(q,(snapshot)=>{
+const videoList = document.getElementById("videoList");
+
+// 🔥 SAFE YOUTUBE ID FUNCTION
+function getVideoId(url){
+    if(!url) return "";
+    let match = url.match(/(?:youtu\.be\/|v=)([^?&]+)/);
+    return match ? match[1] : "";
+}
+
+// 🔥 FIRESTORE LIVE LOAD
+onSnapshot(q, (snapshot) => {
+
+    videoList.innerHTML = ""; // reset
+
+    if(snapshot.empty){
+        videoList.innerHTML = "<p style='color:#aaa;text-align:center'>No videos found</p>";
+        return;
+    }
+
     let html = "";
 
-    snapshot.forEach(doc=>{
+    snapshot.forEach(doc => {
         let v = doc.data();
 
         let vid = getVideoId(v.link);
@@ -843,14 +863,14 @@ onSnapshot(q,(snapshot)=>{
             <div class="card-body">
                 <h3>${v.title || ''}</h3>
 
-                <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
+                <button class="watch-btn" onclick="playVideo('${vid}','${v.title || ''}')">
                     Watch Now <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
         </div>`;
     });
 
-    document.getElementById("videoList").innerHTML = html;
+    videoList.innerHTML = html;
 });
     </script>
 </body>
