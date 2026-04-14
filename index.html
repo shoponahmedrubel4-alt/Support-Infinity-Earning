@@ -792,52 +792,43 @@
             openPop('videoPop');
         }
     </script>
-    
-    <!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
-        authDomain: "support-infinityearning.firebaseapp.com",
-        projectId: "support-infinityearning",
-    };
-    
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    
-    // LOAD VIDEOS
-    function loadVideos() {
-        db.collection("videos").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
-            let html = "";
-            snapshot.forEach(doc => {
-                let v = doc.data();
-                
-                let videoId = v.link.split("v=")[1];
-                
-                html += `
-            <div class="video-card">
-                <div class="thumb-wrapper">
-                    <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg">
-                    <span class="video-tag">${v.category}</span>
-                </div>
-                <div class="card-body">
-                    <span class="card-date">NEW</span>
-                    <h3>${v.title}</h3>
-                    <button class="watch-btn" onclick="playVideo('${videoId}','${v.title}')">
-                        Watch Now
-                    </button>
-                </div>
+const firebaseConfig = {
+  apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
+  authDomain: "support-infinityearning.firebaseapp.com",
+  projectId: "support-infinityearning",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
+
+onSnapshot(q,(snapshot)=>{
+    let html = "";
+    snapshot.forEach(doc=>{
+        let v = doc.data();
+        let videoId = v.link.split("v=")[1];
+
+        html += `
+        <div class="video-card">
+            <div class="thumb-wrapper">
+                <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg">
+                <span class="video-tag">${v.category}</span>
             </div>
-            `;
-            });
-            
-            document.querySelector(".video-section").innerHTML = html;
-        });
-    }
-    
-    loadVideos();
-</script>
+            <div class="card-body">
+                <h3>${v.title}</h3>
+                <button onclick="playVideo('${videoId}','${v.title}')">Watch</button>
+            </div>
+        </div>
+        `;
+    });
+
+    document.querySelector(".video-section").innerHTML = html;
+});
+    </script>
 </body>
 </html>
