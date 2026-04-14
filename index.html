@@ -805,26 +805,41 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// 🔥 FIX YOUTUBE ID
+function getVideoId(url){
+    if(url.includes("v=")){
+        return url.split("v=")[1].split("&")[0];
+    } else if(url.includes("youtu.be/")){
+        return url.split("youtu.be/")[1];
+    }
+    return "";
+}
+
 const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
 
 onSnapshot(q,(snapshot)=>{
     let html = "";
+
     snapshot.forEach(doc=>{
         let v = doc.data();
-        let videoId = v.link.split("v=")[1];
+        let vid = getVideoId(v.link);
 
         html += `
         <div class="video-card">
             <div class="thumb-wrapper">
-                <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg">
+                <img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg"
+                onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'">
                 <span class="video-tag">${v.category}</span>
             </div>
+
             <div class="card-body">
                 <h3>${v.title}</h3>
-                <button onclick="playVideo('${videoId}','${v.title}')">Watch</button>
+
+                <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
+                    Watch Now <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-        </div>
-        `;
+        </div>`;
     });
 
     document.querySelector(".video-section").innerHTML = html;
