@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Infinity Earning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #050d1a;
+            --card-white: #ffffff;
+            --primary-teal: #00f2c3;
+            --accent-gold: #d4af37;
+            --text-gray: #7d8b9a;
+            --soft-blue: #f0f7ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: var(--bg-dark); color: white; overflow-x: hidden; }
+
+.popup-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #eee;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: #1a2533;
+    background: #fafafa;
+}
+
+.popup-item .left {
+    width: 45px;
+    height: 45px;
+    background: #e7f3ff;
+    color: #1877f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.popup-item .left.wa {
+    background: #e8f9f0;
+    color: #25d366;
+}
+
+.popup-item .left.yt {
+    background: #fff1f1;
+    color: #ff0000;
+}
+
+.popup-item .left.tg {
+    background: #e1f5fe;
+    color: #0088cc;
+}
+
+.popup-item .middle {
+    flex: 1;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.popup-item .middle h4 {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.popup-item .middle p {
+    font-size: 11px;
+    color: #777;
+}
+
+.popup-item .right {
+    color: #aaa;
+}
+
+/* === PREMIUM POPUP STYLE === */
+
+.premium-box {
+    border-radius: 30px;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.premium-icon {
+    width: 70px;
+    height: 70px;
+    background: #f5f1e8;
+    color: #c5a75d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    border-radius: 20px;
+    font-size: 28px;
+}
+
+.premium-box h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.premium-box p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.premium-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 18px;
+    border: 1px solid #eee;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.p-left {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.blue { background: linear-gradient(135deg,#4f6df5,#3b4ce2); }
+.green { background: linear-gradient(135deg,#1abc9c,#16a085); }
+.orange { background: linear-gradient(135deg,#ff8c00,#ff5e00); }
+.pink { background: linear-gradient(135deg,#ff0066,#ff3366); }
+
+.p-middle {
+    flex: 1;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.p-middle h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.p-middle small {
+    font-size: 11px;
+    color: #777;
+}
+
+.tag {
+    background: #f3e9d7;
+    color: #b89b5e;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.right {
+    color: #ccc;
+}
+
+/* === GUIDE POPUP STYLE === */
+
+.guide-box {
+    padding: 0;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.guide-header {
+    background: linear-gradient(135deg,#00f2c3,#4facfe);
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+}
+
+.guide-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 30px;
+}
+
+.guide-header h2 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.guide-header p {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.guide-body {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.guide-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.g-left {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+.blue { background: #4f6df5; }
+.purple { background: #a64bf4; }
+.green { background: #1abc9c; }
+.orange { background: #ff7a00; }
+.indigo { background: #5b5be6; }
+.red { background: #ff3b3b; }
+
+.g-text {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.g-text h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.g-text p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.guide-btn {
+    width: 90%;
+    margin: 15px auto 20px;
+    display: block;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    background: #0a1525;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+        /* Top Bar Styles */
+        .top-notice {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 20px; cursor: pointer; font-size: 13px; font-weight: 600;
+        }
+        .notice-gold { background: linear-gradient(90deg, #e1b43d, #c59719); color: #000; }
+        .notice-dark { background: #0a1525; border-bottom: 1px solid #1a2533; color: var(--text-gray); }
+
+        /* Header */
+        header { padding: 20px; }
+        .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
+        .brand-icon { background: var(--accent-gold); padding: 8px; border-radius: 10px; color: #000; font-size: 20px; }
+        .brand h1 { font-size: 18px; line-height: 1.1; }
+        .brand p { font-size: 10px; color: var(--primary-teal); letter-spacing: 1px; }
+
+        .hero { text-align: center; padding: 10px 10px; }
+        .hero-badge { 
+            background: rgba(0, 242, 195, 0.1); color: var(--primary-teal);
+            padding: 6px 15px; border-radius: 20px; font-size: 10px;
+            border: 1px solid rgba(0, 242, 195, 0.2); font-weight: bold;
+        }
+        .hero h2 { font-size: 28px; margin: 20px 0; font-weight: 700; line-height: 1.2; }
+        .hero h2 span { color: var(--accent-gold); }
+
+        .search-container { position: relative; width: 100%; max-width: 400px; margin: 0 auto; }
+        .search-container i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-gray); }
+        .search-container input {
+            width: 100%; background: #0f1724; border: 1px solid #1a2533;
+            padding: 12px 12px 12px 45px; border-radius: 12px; color: white; outline: none;
+        }
+
+        /* Category Filter Tabs */
+        .filter-container { display: flex; gap: 10px; padding: 20px; overflow-x: auto; white-space: nowrap; margin-top: 10px; }
+        .filter-btn { 
+            padding: 10px 20px; border-radius: 20px; background: #1a2533; 
+            color: #7d8b9a; font-size: 13px; font-weight: 600; border: none;
+        }
+        .filter-btn.active { background: var(--primary-teal); color: #000; box-shadow: 0 4px 15px rgba(0, 242, 195, 0.3); }
+
+        /* Video List Section */
+        .video-section { padding: 20px; }
+        .video-card { background: var(--card-white); border-radius: 20px; overflow: hidden; margin-bottom: 25px; color: #1a2533; }
+        .thumb-wrapper { position: relative; width: 100%; }
+        .thumb-wrapper img { width: 100%; display: block; }
+        .video-tag { position: absolute; top: 12px; right: 12px; background: #2ecc71; color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; }
+        .card-body { padding: 20px; }
+        .card-date { font-size: 11px; color: var(--text-gray); display: block; margin-bottom: 10px; }
+        .card-body h3 { font-size: 16px; margin-bottom: 8px; font-weight: 700; }
+        .card-body p { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 15px; }
+        .watch-btn {
+            border: 1px solid #e0e0e0; background: none; padding: 12px;
+            border-radius: 12px; font-weight: 600; cursor: pointer; width: 100%;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+
+        /* NEW: Our Social Platforms Section (Exact Screenshot 20260414-133228) */
+        .social-section { background: #fdfdfd; padding: 40px 20px; text-align: center; color: #1a2533; }
+        .social-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+        .social-section hr { width: 50px; height: 3px; background: var(--accent-gold); border: none; margin: 0 auto 30px; }
+        
+        .social-card {
+            background: white; border-radius: 25px; padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f0f0f0;
+            margin-bottom: 25px; transition: 0.3s; text-decoration: none; display: block;
+        }
+        .social-icon-box {
+            width: 60px; height: 60px; border-radius: 15px; display: flex;
+            align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px;
+        }
+        .fb-bg { background: #e7f3ff; color: #1877f2; }
+        .wa-bg { background: #e8f9f0; color: #25d366; }
+        .yt-bg { background: #fff1f1; color: #ff0000; }
+        .tg-bg { background: #e1f5fe; color: #0088cc; }
+
+        .social-card h4 { font-size: 18px; margin-bottom: 10px; color: #333; }
+        .social-card p { font-size: 12px; color: #777; line-height: 1.6; margin-bottom: 15px; }
+        .join-btn { color: #1a2533; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        /* Footer Section */
+        .footer { background: #0a1525; padding: 40px 20px; border-top: 1px solid #1a2533; }
+        .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .footer p { font-size: 13px; color: var(--text-gray); line-height: 1.6; margin-bottom: 20px; }
+        .footer h4 { font-size: 16px; margin-bottom: 15px; }
+        .footer ul { list-style: none; }
+        .footer li { color: #bdc3c7; font-size: 14px; margin-bottom: 12px; cursor: pointer; }
+
+        /* Modals (Popups) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); display: none; align-items: center;
+            justify-content: center; z-index: 9999; padding: 20px;
+        }
+        .modal-content {
+            background: white; color: #1a2533; width: 100%; max-width: 400px;
+            border-radius: 25px; padding: 30px 20px; position: relative; text-align: center;
+        }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
+
+        /* Floating Buttons */
+        .float-btns { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .f-btn { 
+            width: 55px; height: 55px; border-radius: 50%; display: flex; 
+            align-items: center; justify-content: center; font-size: 22px; 
+            cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .btn-light { background: var(--primary-teal); color: #000; }
+        .btn-chat { background: var(--accent-gold); color: #000; }
+
+        /* Chat Panel */
+        .chat-panel {
+            position: fixed; bottom: -100%; left: 0; width: 100%; height: 85%;
+            background: white; border-radius: 30px 30px 0 0; z-index: 10000;
+            transition: 0.5s; display: flex; flex-direction: column;
+        }
+        .chat-panel.open { bottom: 0; }
+        .chat-header { background: #0a1525; color: white; padding: 20px; display: flex; align-items: center; justify-content: space-between; }
+        .chat-body { flex: 1; padding: 20px; overflow-y: auto; }
+        .bot-msg { background: #f1f3f4; padding: 15px; border-radius: 15px; font-size: 14px; color: #333; max-width: 85%; }
+        .chat-input { padding: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; }
+        .chat-input input { flex: 1; border: 1px solid #ddd; padding: 12px; border-radius: 10px; outline: none; }
+    </style>
+</head>
+<body>
+
+    <div class="top-notice notice-gold" onclick="openPop('socialPop')">
+        <p><i class="fas fa-share-alt"></i> আমাদের সকল সোশ্যাল প্ল্যাটফর্মে যুক্ত থাকার জন্য ক্লিক করুন</p>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="top-notice notice-dark" onclick="openPop('premiumPop')">
+        <p><i class="fas fa-lock"></i> প্রিমিয়াম ওয়ার্ক সাবমিট করার জন্য এখানে ক্লিক করুন</p>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <header>
+        <div class="brand">
+            <div class="brand-icon"><i class="fas fa-infinity"></i></div>
+            <div>
+                <h1>Infinity Earning</h1>
+                <p>E-LEARNING PLATFORM</p>
+            </div>
+        </div>
+
+        <div class="hero">
+            <span class="hero-badge">INFINITY EARNING E-LEARNING PLATFORM</span>
+            <h2>Master New Skills<br>with <span>Expert Tutorials</span></h2>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search tutorials...">
+            </div>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Video Editing</button>
+        <button class="filter-btn">Photo Editing</button>
+        <button class="filter-btn">Data Entry</button>
+        <button class="filter-btn">Digital Marketing</button>
+    </div>
+
+    <section class="video-section">
+        <div class="video-card">
+            <div class="thumb-wrapper">
+                <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Thumb">
+                <span class="video-tag">General</span>
+            </div>
+            <div class="card-body">
+                <span class="card-date"><i class="far fa-clock"></i> APR 14, 2026</span>
+                <h3>Infinity Earning: Introduction to E-learning</h3>
+                <p>This is a comprehensive tutorial on infinity earning: introduction to e-learning provided by Infinity Earning...</p>
+                <button class="watch-btn" onclick="playVideo('dQw4w9WgXcQ', 'Introduction to E-learning')">
+                    Watch Now <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <h2>আমাদের সোশ্যাল প্ল্যাটফর্মগুলোতে জয়েন করুন</h2>
+        <hr>
+
+        <a href="https://www.facebook.com/share/17MNewVM33/" class="social-card">
+            <div class="social-icon-box fb-bg"><i class="fab fa-facebook-f"></i></div>
+            <h4>Official Facebook Page</h4>
+            <p>আমাদের অফিসিয়াল ফেসবুক পেজে জয়েন করুন। যেকোনো ধরণের সমস্যা বা তথ্য জানার জন্য সরাসরি পেজে মেসেজ করে সাপোর্ট নিতে পারেন।</p>
+            <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+        </a>
+
+        <a href="https://www.facebook.com/share/g/18KYZhGKr2/" class="social-card">
+            <div class="social-icon-box fb-bg"><i class="fas fa-users"></i></div>
+            <h4>Official Facebook Group</h4>
+            <p>নিচের লিংকে ক্লিক করে আমাদের অফিসিয়াল ফেসবুক গ্রুপে জয়েন করুন। উইথড্র দেওয়ার পর অবশ্যই গ্রুপে আপনার পেমেন্টের স্ক্রিনশট শেয়ার করে একটি ফিডব্যাক দিতে হবে।</p>
+            <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+        </a>
+
+        <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" class="social-card">
+            <div class="social-icon-box wa-bg"><i class="fab fa-whatsapp"></i></div>
+            <h4>WhatsApp Channel</h4>
+            <p>আমাদের অফিসিয়াল হোয়াটসঅ্যাপ চ্যানেলে জয়েন করুন। এখানে নিয়মিত পেমেন্ট প্রুফ এবং আপডেট শেয়ার করা হয়।</p>
+            <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+        </a>
+
+        <a href="https://youtube.com/@infinityearning-ie?si=qlFqw1SF66dmpDYO" class="social-card">
+            <div class="social-icon-box yt-bg"><i class="fab fa-youtube"></i></div>
+            <h4>YouTube Channel</h4>
+            <p>আমাদের ইউটিউব চ্যানেলে অন্তত করে অবশ্যই Subscribe করে রাখবেন। কাজ সম্পর্কিত সকল গাইডলাইন ও ভিডিও আপডেট এখানে শেয়ার করা হবে।</p>
+            <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+        </a>
+
+        <a href="https://t.me/infinityearninge" class="social-card">
+            <div class="social-icon-box tg-bg"><i class="fab fa-telegram-plane"></i></div>
+            <h4>Telegram Group</h4>
+            <p>নিচের লিংকে ক্লিক করে আমাদের টেলিগ্রাম গ্রুপে জয়েন করুন। এখানে বিভিন্ন গুরুত্বপূর্ণ আপডেট ও নোটিশ দেওয়া হয়।</p>
+            <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+        </a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="brand-icon" style="font-size: 15px;"><i class="fas fa-infinity"></i></div>
+            <h1 style="font-size: 18px;">Infinity Earning</h1>
+        </div>
+        <p>Infinity Earning is a leading e-learning platform dedicated to providing high-quality tutorials and resources for digital skills. Join our community and start your journey today.</p>
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 30px;">
+            <i class="fab fa-facebook" style="color: #1877f2; font-size: 20px;"></i>
+            <i class="fas fa-users" style="color: #1877f2; font-size: 20px;"></i>
+            <i class="fab fa-whatsapp" style="color: #25d366; font-size: 20px;"></i>
+            <i class="fab fa-youtube" style="color: #ff0000; font-size: 20px;"></i>
+            <i class="fab fa-telegram" style="color: #0088cc; font-size: 20px;"></i>
+        </div>
+
+        <h4>Quick Links</h4>
+        <ul>
+            <li>All Courses</li>
+            <li>Premium Work</li>
+            <li>Unity Agent</li>
+            <li>Success Stories</li>
+        </ul>
+
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #1a2533; text-align: center; color: #555; font-size: 11px;">
+            © 2026 All rights reserved by Infinity Earning.<br>
+            Created by Infinity Earning <span style="color: red;">●</span> for the community
+        </div>
+    </footer>
+
+    <!-- === PREMIUM POPUP NEW DESIGN === -->
+<div class="modal-overlay" id="premiumPop">
+    <div class="modal-content premium-box">
+        <span class="modal-close" onclick="closePop('premiumPop')">&times;</span>
+
+        <div class="premium-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+
+        <h2>প্রিমিয়াম ওয়ার্ক সাপোর্ট</h2>
+        <p>নিচের যেকোনো একটি কাজ নির্বাচন করুন</p>
+
+        <!-- ITEM -->
+        <div class="premium-item" onclick="showError()">
+            <div class="p-left blue">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="p-middle">
+                <h4>Data Entry Work <span class="tag">HIGH PAYING</span></h4>
+                <small>Professional data...</small>
+            </div>
+            <i class="fas fa-lock right"></i>
+        </div>
+
+        <div class="premium-item" onclick="showError()">
+            <div class="p-left green">
+                <i class="fas fa-keyboard"></i>
+            </div>
+            <div class="p-middle">
+                <h4>Typing Work <span class="tag">EXCLUSIVE</span></h4>
+                <small>Accurate speed typing...</small>
+            </div>
+            <i class="fas fa-lock right"></i>
+        </div>
+
+        <div class="premium-item" onclick="showError()">
+            <div class="p-left orange">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="p-middle">
+                <h4>Form Fill Up Work <span class="tag">PRO</span></h4>
+                <small>Bulk form submission...</small>
+            </div>
+            <i class="fas fa-lock right"></i>
+        </div>
+
+        <div class="premium-item" onclick="showError()">
+            <div class="p-left pink">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="p-middle">
+                <h4>Email Marketing work <span class="tag">PREMIUM</span></h4>
+                <small>Strategic campaign...</small>
+            </div>
+            <i class="fas fa-lock right"></i>
+        </div>
+
+    </div>
+</div>
+
+    <div class="modal-overlay" id="errorPop">
+        <div class="modal-content">
+            <div style="color: #ff5252; font-size: 50px; margin-bottom: 20px;"><i class="far fa-times-circle"></i></div>
+            <p style="font-weight: 600; line-height: 1.6;">আপনি এই কাজটি করার জন্য এখনো প্রস্তুত না কাজটি করতে হলে অবশ্যই আপনাকে পূর্বের কাজগুলো করতে হবে যেগুলো টিম লিডার আপনাদেরকে দিয়েছে</p>
+            <button onclick="closePop('errorPop')" style="margin-top: 20px; background: #0a1525; color: white; border: none; padding: 12px 30px; border-radius: 10px; font-weight: bold;">ফিরে যান</button>
+        </div>
+    </div>
+
+    <!-- === SUCCESS GUIDE POPUP === -->
+<div class="modal-overlay" id="guidePop">
+    <div class="modal-content guide-box">
+
+        <span class="modal-close" onclick="closePop('guidePop')">&times;</span>
+
+        <!-- HEADER -->
+        <div class="guide-header">
+            <div class="guide-icon">
+                <i class="fas fa-magic"></i>
+            </div>
+            <h2>সফলতার মূলমন্ত্র</h2>
+            <p>Infinity Earning-এ আপনার ক্যারিয়ার গড়ার সেরা গাইডলাইন</p>
+        </div>
+
+        <!-- BODY -->
+        <div class="guide-body">
+
+            <div class="guide-item">
+                <div class="g-left blue"><i class="fas fa-chart-line"></i></div>
+                <div class="g-text">
+                    <h4>কঠোর পরিশ্রম ও নিষ্ঠা</h4>
+                    <p>নতুন অবস্থায় জয়েন করার পর অবশ্যই আপনাকে কাজ করতে হবে। অন্যথায় পরিশ্রম করলে তেমন অগ্রগতি হবে না।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+            <div class="guide-item">
+                <div class="g-left purple"><i class="fas fa-users"></i></div>
+                <div class="g-text">
+                    <h4>নিয়মিত মিটিংয়ে অংশগ্রহণ</h4>
+                    <p>নিয়মিত মিটিংয়ে জয়েন করতে হবে, অন্যথায় কাজের ধরন ও গুরুত্বপূর্ণ আপডেট বোঝা যাবে না।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+            <div class="guide-item">
+                <div class="g-left green"><i class="fas fa-video"></i></div>
+                <div class="g-text">
+                    <h4>ক্লাসে মনোযোগ ও শিক্ষা</h4>
+                    <p>নিয়মিত ক্লাসে জয়েন করতে হবে এবং যা শেখানো হয় তা মনোযোগ দিয়ে শিখতে হবে।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+            <div class="guide-item">
+                <div class="g-left orange"><i class="fas fa-tasks"></i></div>
+                <div class="g-text">
+                    <h4>ডেইলি ওয়ার্ক সাবমিট</h4>
+                    <p>প্রতিদিনের কাজ প্রতিদিন নির্দিষ্ট সময়ের মধ্যে শেষ করতে হবে।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+            <div class="guide-item">
+                <div class="g-left indigo"><i class="fas fa-user-graduate"></i></div>
+                <div class="g-text">
+                    <h4>টিম লিডার ও ট্রেইনার গাইডলাইন</h4>
+                    <p>টিম লিডার ও ট্রেইনারের সকল নির্দেশনা মেনে চলতে হবে।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+            <div class="guide-item">
+                <div class="g-left red"><i class="fas fa-shield-alt"></i></div>
+                <div class="g-text">
+                    <h4>অ্যাকাউন্ট নিরাপত্তা</h4>
+                    <p>আপনার অ্যাকাউন্টের পাসওয়ার্ড সুরক্ষিত রাখুন এবং কাউকে শেয়ার করবেন না।</p>
+                </div>
+                <i class="fas fa-chevron-right right"></i>
+            </div>
+
+        </div>
+
+        <!-- BUTTON -->
+        <button class="guide-btn" onclick="closePop('guidePop')">
+            ✔️ আমি সবগুলো নিয়ম মেনে চলব
+        </button>
+
+    </div>
+</div>
+
+<div class="modal-overlay" id="socialPop">
+    <div class="modal-content" style="border-radius:25px; padding:25px 15px;">
+        <span class="modal-close" onclick="closePop('socialPop')">&times;</span>
+
+        <h2 style="font-size:20px; font-weight:800; margin-bottom:10px;">
+            আমাদের সব সোশ্যাল প্ল্যাটফর্ম
+        </h2>
+        <p style="font-size:13px; color:#777; margin-bottom:20px;">
+            নিচের লিংকে ক্লিক করে আমাদের সাথে যুক্ত হন
+        </p>
+
+        <!-- ITEM -->
+        <a href="https://www.facebook.com/share/17MNewVM33/" target="_blank" class="popup-item">
+            <div class="left">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="middle">
+                <h4>Official Facebook Page</h4>
+                <p>আমাদের অফিসিয়াল...</p>
+            </div>
+            <i class="fas fa-chevron-right right"></i>
+        </a>
+
+        <a href="https://www.facebook.com/share/g/18KYZhGKr2/" target="_blank" class="popup-item">
+            <div class="left">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="middle">
+                <h4>Official Facebook Group</h4>
+                <p>নিচের লিংকে ক্লিক...</p>
+            </div>
+            <i class="fas fa-chevron-right right"></i>
+        </a>
+
+        <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" target="_blank" class="popup-item">
+            <div class="left wa">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="middle">
+                <h4>WhatsApp Channel</h4>
+                <p>আমাদের অফিসিয়াল...</p>
+            </div>
+            <i class="fas fa-chevron-right right"></i>
+        </a>
+
+        <a href="https://youtube.com/@infinityearning-ie?si=qlFqw1SF66dmpDYO" target="_blank" class="popup-item">
+            <div class="left yt">
+                <i class="fab fa-youtube"></i>
+            </div>
+            <div class="middle">
+                <h4>YouTube Channel</h4>
+                <p>আমাদের ইউটিউব...</p>
+            </div>
+            <i class="fas fa-chevron-right right"></i>
+        </a>
+
+        <a href="https://t.me/infinityearninge" target="_blank" class="popup-item">
+            <div class="left tg">
+                <i class="fab fa-telegram-plane"></i>
+            </div>
+            <div class="middle">
+                <h4>Telegram Group</h4>
+                <p>নিচের লিংকে ক্লিক...</p>
+            </div>
+            <i class="fas fa-chevron-right right"></i>
+        </a>
+
+    </div>
+</div>
+
+    <div class="modal-overlay" id="videoPop">
+        <div class="modal-content" style="background: #000; color: white; padding: 0; width: 95%;">
+            <span class="modal-close" onclick="closePop('videoPop')" style="color: white; z-index: 10;">&times;</span>
+            <div id="videoContainer" style="width: 100%; height: 220px; background: #000;"></div>
+            <div style="padding: 15px; text-align: left;">
+                <h3 id="vTitle" style="font-size: 16px;"></h3>
+                <p style="font-size: 12px; color: #aaa; margin-top: 5px;">This is a comprehensive tutorial provided by Infinity Earning...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-panel" id="chatAgent">
+        <div class="chat-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="background: var(--accent-gold); padding: 8px; border-radius: 8px; color: #000;"><i class="fas fa-robot"></i></div>
+                <div>
+                    <h4 style="font-size: 14px;">Infinity Agent</h4>
+                    <p style="font-size: 10px; color: var(--primary-teal);">● ONLINE SUPPORT</p>
+                </div>
+            </div>
+            <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer;"></i>
+        </div>
+        <div class="chat-body" id="chatBox">
+            <div class="bot-msg">স্বাগতম! আমি ইনফিনিটি এজেন্ট (Infinity Agent)। ইনফিনিটি আর্নিং-এর পক্ষ থেকে আপনাকে সাহায্য করতে আমি প্রস্তুত। আপনাকে কিভাবে সাহায্য করতে পারি?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInp" placeholder="আপনার প্রশ্ন লিখুন...">
+            <button onclick="sendMsg()" style="background: var(--accent-gold); border: none; width: 45px; border-radius: 8px; color: white;"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <div class="float-btns">
+        <div class="f-btn btn-light" onclick="openPop('guidePop')"><i class="far fa-lightbulb"></i></div>
+        <div class="f-btn btn-chat" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
+    </div>
+
+    <script>
+        function openPop(id) { document.getElementById(id).style.display = 'flex'; }
+        function closePop(id) { 
+            document.getElementById(id).style.display = 'none'; 
+            if(id === 'videoPop') document.getElementById('videoContainer').innerHTML = '';
+        }
+        function showError() { closePop('premiumPop'); openPop('errorPop'); }
+        function toggleChat() { document.getElementById('chatAgent').classList.toggle('open'); }
+        
+        function sendMsg() {
+            let inp = document.getElementById('chatInp');
+            let box = document.getElementById('chatBox');
+            if(!inp.value) return;
+            box.innerHTML += `<div style="background: var(--primary-teal); padding: 12px; border-radius: 15px; font-size: 14px; margin-top: 15px; align-self: flex-end; max-width: 85%; margin-left: auto;">${inp.value}</div>`;
+            inp.value = '';
+            setTimeout(() => {
+                box.innerHTML += `<div class="bot-msg" style="margin-top: 15px;">দুঃখিত, বর্তমানে আমি সংযোগ করতে পারছি না। দয়া করে আপনার টিমের সাথে যোগাযোগ করুন।</div>`;
+                box.scrollTop = box.scrollHeight;
+            }, 1000);
+        }
+
+        function playVideo(id, title) {
+            document.getElementById('vTitle').innerText = title;
+            document.getElementById('videoContainer').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+            openPop('videoPop');
+        }
+    </script>
+    
+    <!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
+        authDomain: "support-infinityearning.firebaseapp.com",
+        projectId: "support-infinityearning",
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    // LOAD VIDEOS
+    function loadVideos() {
+        db.collection("videos").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+            let html = "";
+            snapshot.forEach(doc => {
+                let v = doc.data();
+                
+                let videoId = v.link.split("v=")[1];
+                
+                html += `
+            <div class="video-card">
+                <div class="thumb-wrapper">
+                    <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg">
+                    <span class="video-tag">${v.category}</span>
+                </div>
+                <div class="card-body">
+                    <span class="card-date">NEW</span>
+                    <h3>${v.title}</h3>
+                    <button class="watch-btn" onclick="playVideo('${videoId}','${v.title}')">
+                        Watch Now
+                    </button>
+                </div>
+            </div>
+            `;
+            });
+            
+            document.querySelector(".video-section").innerHTML = html;
+        });
+    }
+    
+    loadVideos();
+</script>
+</body>
+</html>
