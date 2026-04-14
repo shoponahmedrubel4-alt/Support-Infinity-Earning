@@ -784,6 +784,22 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+        let selectedCategory = "all";
+
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        selectedCategory = btn.dataset.cat;
+
+        renderVideos(allVideos, searchBox.value.toLowerCase());
+    });
+});
+        
 const firebaseConfig = {
   apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
   authDomain: "support-infinityearning.firebaseapp.com",
@@ -801,6 +817,55 @@ function getVideoId(url){
 
     let match = url.match(/(?:youtu\.be\/|v=|embed\/)([^?&]+)/);
     return match ? match[1] : "";
+}
+
+        function renderVideos(videos, searchText = "") {
+
+    videoList.innerHTML = "";
+
+    let filtered = videos.filter(v => {
+
+        let titleMatch = v.title?.toLowerCase().includes(searchText);
+
+        let categoryMatch =
+            selectedCategory === "all" ||
+            v.category?.toLowerCase() === selectedCategory;
+
+        return titleMatch && categoryMatch;
+    });
+
+    if(filtered.length === 0){
+        videoList.innerHTML = "<p style='color:white;text-align:center'>No videos found</p>";
+        return;
+    }
+
+    filtered.forEach(v => {
+
+        let vid = getVideoId(v.link);
+        if(!vid) return;
+
+        videoList.innerHTML += `
+        <div class="video-card">
+            <div class="thumb-wrapper">
+                <img src="https://img.youtube.com/vi/${vid}/hqdefault.jpg">
+                <span class="video-tag">${v.category || "General"}</span>
+            </div>
+
+            <div class="card-body">
+                <span class="card-date">Uploaded</span>
+
+                <h3>${v.title}</h3>
+
+                <p style="font-size:12px;color:#666;margin-top:6px;">
+                    This Is A Comprehensive Tutorial......... Provided By Infinity Earning E-learning Platform.
+                </p>
+
+                <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
+                    Watch Now <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>`;
+    });
 }
 
 // 🔥 OPEN VIDEO (IMPORTANT: global banate hobe)
