@@ -829,18 +829,19 @@ onSnapshot(q,(snapshot)=>{
 
     snapshot.forEach(doc=>{
         let v = doc.data();
+
         let vid = getVideoId(v.link);
+        if(!vid) return;
 
         html += `
         <div class="video-card">
             <div class="thumb-wrapper">
-                <img src="https://img.youtube.com/vi/${vid}/maxresdefault.jpg"
-onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'">
-                <span class="video-tag">${v.category}</span>
+                <img src="https://img.youtube.com/vi/${vid}/hqdefault.jpg">
+                <span class="video-tag">${v.category || 'General'}</span>
             </div>
 
             <div class="card-body">
-                <h3>${v.title}</h3>
+                <h3>${v.title || ''}</h3>
 
                 <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
                     Watch Now <i class="fas fa-chevron-right"></i>
@@ -849,7 +850,7 @@ onerror="this.src='https://img.youtube.com/vi/${vid}/hqdefault.jpg'">
         </div>`;
     });
 
-    document.querySelector(".video-section").innerHTML = html;
+    document.getElementById("videoList").innerHTML = html;
 });
     </script>
 </body>
