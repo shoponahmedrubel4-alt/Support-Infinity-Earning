@@ -836,13 +836,23 @@ function getVideoId(url){
 }
 
 // 🔥 FIRESTORE LIVE LOAD
+const videoList = document.getElementById("videoList");
+
+// 🔥 SAFE YOUTUBE ID (FULL FIX)
+function getVideoId(url){
+    if(!url) return "";
+
+    let match = url.match(/(?:youtu\.be\/|v=|\/embed\/)([^?&]+)/);
+    return match ? match[1] : "";
+}
+
+// 🔥 SIMPLE COLLECTION (NO ORDER PROBLEM)
+const q = collection(db, "videos");
+
 onSnapshot(q, (snapshot) => {
 
-    videoList.innerHTML = ""; // reset
+    videoList.innerHTML = "";
 
-    console.log("VIDEO LINK:", v.link);
-console.log("VIDEO ID:", vid);
-    
     if(snapshot.empty){
         videoList.innerHTML = "<p style='color:#aaa;text-align:center'>No videos found</p>";
         return;
@@ -854,6 +864,12 @@ console.log("VIDEO ID:", vid);
         let v = doc.data();
 
         let vid = getVideoId(v.link);
+
+        // 🔥 DEBUG (important)
+        console.log("TITLE:", v.title);
+        console.log("LINK:", v.link);
+        console.log("VID:", vid);
+
         if(!vid) return;
 
         html += `
@@ -864,9 +880,10 @@ console.log("VIDEO ID:", vid);
             </div>
 
             <div class="card-body">
-                <h3>${v.title || ''}</h3>
+                <span class="card-date">Uploaded</span>
+                <h3>${v.title}</h3>
 
-                <button class="watch-btn" onclick="playVideo('${vid}','${v.title || ''}')">
+                <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
                     Watch Now <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
