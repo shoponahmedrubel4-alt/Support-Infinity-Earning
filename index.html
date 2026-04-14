@@ -796,7 +796,7 @@
     </script>
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDXabUDi_fyG70-EV1ozzU3k_OIr-id8-Q",
@@ -807,46 +807,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 🔥 FIX YOUTUBE ID
-function getVideoId(url){
-    let id = "";
-
-    if(url.includes("youtu.be/")){
-        id = url.split("youtu.be/")[1];
-    } 
-    else if(url.includes("v=")){
-        id = url.split("v=")[1];
-    }
-
-    // 🔥 remove extra params like ?si= or &...
-    if(id.includes("?")) id = id.split("?")[0];
-    if(id.includes("&")) id = id.split("&")[0];
-
-    return id;
-}
-const q = query(collection(db,"videos"), orderBy("createdAt","desc"));
-
 const videoList = document.getElementById("videoList");
 
-// 🔥 SAFE YOUTUBE ID FUNCTION
-function getVideoId(url){
-    if(!url) return "";
-    let match = url.match(/(?:youtu\.be\/|v=)([^?&]+)/);
-    return match ? match[1] : "";
-}
-
-// 🔥 FIRESTORE LIVE LOAD
-const videoList = document.getElementById("videoList");
-
-// 🔥 SAFE YOUTUBE ID (FULL FIX)
+// 🔥 YouTube ID FIX (FULL SAFE)
 function getVideoId(url){
     if(!url) return "";
 
-    let match = url.match(/(?:youtu\.be\/|v=|\/embed\/)([^?&]+)/);
+    let match = url.match(/(?:youtu\.be\/|v=|embed\/)([^?&]+)/);
     return match ? match[1] : "";
 }
 
-// 🔥 SIMPLE COLLECTION (NO ORDER PROBLEM)
+// 🔥 OPEN VIDEO (IMPORTANT: global banate hobe)
+window.playVideo = function(id, title){
+    document.getElementById('vTitle').innerText = title;
+    document.getElementById('videoContainer').innerHTML =
+    `<iframe width="100%" height="100%" 
+    src="https://www.youtube.com/embed/${id}?autoplay=1"
+    frameborder="0" allowfullscreen></iframe>`;
+
+    document.getElementById('videoPop').style.display = "flex";
+}
+
+// 🔥 FIRESTORE LIVE DATA
 const q = collection(db, "videos");
 
 onSnapshot(q, (snapshot) => {
@@ -854,34 +836,27 @@ onSnapshot(q, (snapshot) => {
     videoList.innerHTML = "";
 
     if(snapshot.empty){
-        videoList.innerHTML = "<p style='color:#aaa;text-align:center'>No videos found</p>";
+        videoList.innerHTML = "<p style='color:white;text-align:center'>No videos found</p>";
         return;
     }
-
-    let html = "";
 
     snapshot.forEach(doc => {
         let v = doc.data();
 
         let vid = getVideoId(v.link);
 
-        // 🔥 DEBUG (important)
-        console.log("TITLE:", v.title);
-        console.log("LINK:", v.link);
-        console.log("VID:", vid);
-
         if(!vid) return;
 
-        html += `
+        videoList.innerHTML += `
         <div class="video-card">
             <div class="thumb-wrapper">
                 <img src="https://img.youtube.com/vi/${vid}/hqdefault.jpg">
-                <span class="video-tag">${v.category || 'General'}</span>
+                <span class="video-tag">${v.category || "General"}</span>
             </div>
 
             <div class="card-body">
                 <span class="card-date">Uploaded</span>
-                <h3>${v.title}</h3>
+                <h3>${v.title || "No Title"}</h3>
 
                 <button class="watch-btn" onclick="playVideo('${vid}','${v.title}')">
                     Watch Now <i class="fas fa-chevron-right"></i>
@@ -889,9 +864,7 @@ onSnapshot(q, (snapshot) => {
             </div>
         </div>`;
     });
-
-    videoList.innerHTML = html;
 });
-    </script>
+</script>
 </body>
 </html>
