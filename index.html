@@ -3,492 +3,915 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - Infinity Earning</title>
+    <title>My Google Ai Studio </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://infinityearning.xyz/assets/style.css">
     <style>
     * {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    outline: none;
-    box-sizing: border-box;
-}
-        :root {
-            --bg-deep: #030812;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --primary-neon: #00f2c3;
-            --accent-glow: #ffbd59;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-        }
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        outline: none;
+        box-sizing: border-box;
+    }
+    :root {
+        --bg: #15121f;
+        --panel: #1e1930;
+        --panel-alt: #241c3d;
+        --line: rgba(255,255,255,0.09);
+        --coral: #ff6b4d;
+        --coral-dim: rgba(255,107,77,0.14);
+        --violet: #9d8cff;
+        --violet-dim: rgba(157,140,255,0.14);
+        --text: #f6f3fb;
+        --muted: #a199b8;
+        --radius-lg: 22px;
+        --radius-md: 14px;
+        --font-display: 'Fraunces', Georgia, serif;
+        --font-body: 'Inter', 'Segoe UI', sans-serif;
+        --bottom-nav-h: 68px;
+    }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
-        
-        body { 
-            background-color: var(--bg-deep); 
-            color: var(--text-main); 
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at 10% 20%, rgba(0, 242, 195, 0.05) 0%, transparent 40%),
-                              radial-gradient(circle at 90% 80%, rgba(255, 189, 89, 0.05) 0%, transparent 40%);
-        }
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: var(--font-body);
+        background: linear-gradient(to bottom, #12344D 700px, #f4f6fa 530px) !important;
+        color: #1a1d24 !important;
+        overflow-x: hidden;
+        padding-bottom: calc(var(--bottom-nav-h) + 20px); /* ফুটারের নিচের সাদা অংশ বা নেভ বার ফিক্স */
+    }
 
-        /* Top Bar Dynamic Styling */
-        .notice-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2px;
-        }
-        .top-notice {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 14px 20px; cursor: pointer; font-size: 13px; font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .notice-gold { 
-            background: linear-gradient(90deg, #ffbd59, #ff9f00); color: #000; 
-            box-shadow: 0 4px 15px rgba(255, 189, 89, 0.2);
-        }
-        .notice-dark { background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid var(--glass-border); color: var(--primary-neon); }
-        .top-notice:hover { opacity: 0.9; transform: translateY(-1px); }
+    /* ================= SCREENSHOT 1 STYLE PROMO LIST ================= */
+    .promo-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .promo-row-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 18px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+    }
+    .promo-row-item.social-row {
+        background: linear-gradient(90deg, #d4af37, #f3e5ab);
+        color: #1a0f0a;
+    }
+    .promo-row-item.premium-row {
+        background: #10172a;
+        color: #ff8c6b;
+    }
+    .promo-row-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+    .promo-row-left i {
+        font-size: 14px;
+        width: 24px;
+        text-align: center;
+    }
+    .promo-row-item .chevron-right {
+        font-size: 12px;
+        opacity: 0.8;
+    }
 
-        /* Modern Header */
-        header { padding: 40px 20px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
-        .brand { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 35px; }
-        .brand-icon { 
-            background: linear-gradient(135deg, var(--primary-neon), #00b4d8); 
-            padding: 12px; border-radius: 16px; color: #030812; font-size: 24px;
-            box-shadow: 0 0 20px rgba(0, 242, 195, 0.4);
-        }
-        .brand h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .brand p { font-size: 11px; color: var(--primary-neon); letter-spacing: 2px; font-weight: 700; margin-top: 2px; }
+    /* ================= STICKY APP BAR (HEADING) ================= */
+    .app-bar {
+        position: sticky;
+        top: 0;
+        z-index: 500;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 18px;
+        background: rgba(21,18,31,0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+    }
+    .app-bar-left { display: flex; align-items: center; gap: 11px; }
+    .brand-icon {
+        background: var(--coral); width: 38px; height: 38px; border-radius: 11px;
+        color: #1a0f0a; font-size: 17px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .app-bar-left h1 { font-family: var(--font-display); font-size: 16.5px; font-weight: 700; color: #fff; margin: 0; line-height: 1.1; }
+    .app-bar-left p { font-size: 9px; color: var(--violet); letter-spacing: 1.6px; font-weight: 700; margin: 1px 0 0; }
+    .app-bar-actions { display: flex; align-items: center; gap: 6px; }
+    .icon-btn {
+        width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);
+        background: var(--panel); color: var(--text); display: flex; align-items: center; justify-content: center;
+        font-size: 14px; cursor: pointer;
+    }
 
-        .hero-badge { 
-            background: rgba(0, 242, 195, 0.06); color: var(--primary-neon);
-            padding: 8px 18px; border-radius: 30px; font-size: 11px;
-            border: 1px solid rgba(0, 242, 195, 0.2); font-weight: 700; display: inline-block;
-            text-transform: uppercase;
-        }
-        .hero h2 { font-size: 32px; margin: 25px 0; font-weight: 800; line-height: 1.3; }
-        .hero h2 span { color: var(--accent-glow); text-shadow: 0 0 15px rgba(255, 189, 89, 0.2); }
+    /* expandable search row */
+    .search-bar {
+        max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease;
+        background: var(--bg); padding: 0 18px;
+    }
+    .search-bar.open { max-height: 60px; padding: 12px 18px; }
+    .search-bar .box { position: relative; }
+    .search-bar i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; }
+    .search-bar input {
+        width: 100%; background: var(--panel); border: 1px solid var(--line);
+        padding: 12px 14px 12px 42px; border-radius: var(--radius-md); color: #fff; font-size: 13.5px;
+    }
 
-        /* Futuristic Search Box */
-        .search-container { position: relative; width: 100%; max-width: 450px; margin: 30px auto 0; }
-        .search-container i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 16px; }
-        .search-container input {
-            width: 100%; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--glass-border);
-            padding: 15px 15px 15px 52px; border-radius: 16px; color: white; outline: none; font-size: 14px;
-            transition: all 0.3s ease; backdrop-filter: blur(10px);
-        }
-        .search-container input:focus { border-color: var(--primary-neon); box-shadow: 0 0 15px rgba(0, 242, 195, 0.15); }
+    /* ================= HERO TEXT SECTION ================= */
+    .hero-section {
+        text-align: center;
+        padding: 24px 18px 10px;
+    }
+    .hero-badge {
+        display: inline-block;
+        background: rgba(42, 245, 181, 0.1);
+        color: #2af5b5;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 6px 16px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border: 1px solid rgba(42, 245, 181, 0.2);
+        margin-bottom: 12px;
+    }
+    .hero-section h2 {
+        font-family: var(--font-body);
+        font-size: 26px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0;
+        line-height: 1.3;
+    }
+    .hero-section h2 span {
+        color: #ffc76d;
+    }
 
-        /* Premium Filter Tabs */
-        .filter-container { 
-            display: flex; gap: 12px; padding: 10px 20px; overflow-x: auto; 
-            max-width: 800px; margin: 20px auto; white-space: nowrap;
-            scrollbar-width: none;
-        }
-        .filter-container::-webkit-scrollbar { display: none; }
-        .filter-btn { 
-            padding: 10px 24px; border-radius: 14px; background: rgba(255,255,255,0.03); 
-            color: var(--text-muted); font-size: 13px; font-weight: 600; border: 1px solid var(--glass-border);
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .filter-btn.active { 
-            background: linear-gradient(135deg, var(--primary-neon), #00b4d8); color: #030812; 
-            border-color: transparent; font-weight: 700;
-            box-shadow: 0 4px 20px rgba(0, 242, 195, 0.25); 
-        }
+    /* ================= CATEGORY RAIL ================= */
+    .category-rail {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 18px 10px 6px;
+        align-items: center;
+    }
+    .cat-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+    }
+    .row-3 .cat-chip { flex: 1; max-width: 110px; }
+    .row-2 .cat-chip { flex: 1; max-width: 145px; }
+    .row-1 .cat-chip { flex: 1; max-width: 130px; }
 
-        /* Video Elegant Grid Section */
-        .video-section-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
-        #videoList { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 25px; 
-        }
-        .video-card { 
-            background: rgba(15, 23, 42, 0.45); border: 1px solid var(--glass-border);
-            border-radius: 24px; overflow: hidden; backdrop-filter: blur(12px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.2) inset;
-        }
-        .thumb-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
-        .thumb-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .video-card:hover .thumb-wrapper img { transform: scale(1.05); }
-        .video-tag { 
-            position: absolute; top: 15px; right: 15px; background: rgba(3, 8, 18, 0.75); 
-            color: var(--primary-neon); padding: 5px 14px; border-radius: 30px; 
-            font-size: 11px; font-weight: 700; border: 1px solid rgba(0, 242, 195, 0.3);
-            backdrop-filter: blur(5px);
-        }
-        .card-body { padding: 22px; }
-        .card-date { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; margin-bottom: 12px; }
-        .card-body h3 { font-size: 16px; margin-bottom: 10px; font-weight: 700; line-height: 1.4; color: #fff; }
-        .card-body p { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
-        .watch-btn {
-            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); padding: 14px;
-            border-radius: 14px; font-weight: 600; cursor: pointer; width: 100%; color: #fff;
-            display: flex; justify-content: center; align-items: center; gap: 10px;
-            transition: all 0.3s ease;
-        }
-        .watch-btn:hover { background: #fff; color: #000; font-weight: 700; }
+    .cat-chip {
+        background: none; border: none; align-items: center; display: flex;
+        flex-direction: column; flex: none !important; width: auto !important; min-width: 90px;
+    }
+    .cat-circle {
+        width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        margin-bottom: 6px; font-size: 19px; background: var(--panel); color: var(--muted); border: 2px solid var(--line);
+    }
+    .cat-chip.active .cat-circle { background: var(--coral-dim); color: var(--coral); border-color: var(--coral); }
+    .cat-chip small { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+    .cat-chip.active small { color: #fff; }
 
-        /* Premium Social Platforms Section */
-        .social-section { background: rgba(7, 15, 30, 0.7); border-top: 1px solid var(--glass-border); padding: 60px 20px; text-align: center; }
-        .social-section h2 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
-        .social-section .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--primary-neon), var(--accent-glow)); border: none; margin: 0 auto 40px; border-radius: 2px; }
-        
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-        .social-card {
-            background: rgba(15, 23, 42, 0.4); border-radius: 24px; padding: 30px 20px;
-            border: 1px solid var(--glass-border); text-decoration: none; display: flex; flex-direction: column;
-            align-items: center; transition: all 0.3s ease; backdrop-filter: blur(10px);
-        }
-        .social-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); background: rgba(15, 23, 42, 0.6); }
-        
-        .social-icon-box {
-            width: 55px; height: 55px; border-radius: 16px; display: flex;
-            align-items: center; justify-content: center; margin-bottom: 18px; font-size: 22px;
-        }
-        .fb-bg { background: rgba(24, 119, 242, 0.1); color: #1877f2; }
-        .wa-bg { background: rgba(37, 211, 102, 0.1); color: #25d366; }
-        .yt-bg { background: rgba(255, 0, 0, 0.1); color: #ff0000; }
-        .tg-bg { background: rgba(0, 136, 204, 0.1); color: #0088cc; }
+    /* ================= FEED ================= */
+    .feed { max-width: 500px; margin: 0 auto; padding: 20px 16px; }
+    .feed-list { display: flex; flex-direction: column; gap: 24px; }
+    .feed-item {
+        background: #ffffff; border-radius: 28px; padding: 15px; display: flex;
+        flex-direction: column; gap: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.02); cursor: pointer; transition: transform 0.2s ease;
+    }
+    .feed-item:hover { transform: translateY(-2px); }
+    .feed-thumb { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; }
+    .feed-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .feed-thumb .tag { position: absolute; top: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #2af5b5; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
+    .feed-info { width: 100%; }
+    .feed-date { font-size: 11px; color: #94a3b8; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .feed-info h3 { font-size: 17px; font-weight: 800; color: #0f172a; margin: 0 0 8px; line-height: 1.4; }
+    .feed-info p { font-size: 13px; color: #64748b; line-height: 1.5; margin: 0; }
+    .watch-now-btn { width: 100%; background: transparent; border: 1px solid #e2e8f0; padding: 12px; border-radius: 16px; color: #334155; font-size: 13.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; }
 
-        .social-card h4 { font-size: 16px; margin-bottom: 10px; color: #fff; font-weight: 700; }
-        .social-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
-        .join-btn { color: var(--primary-neon); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: gap 0.2s; }
-        .social-card:hover .join-btn { gap: 12px; }
+    /* সোশ্যাল সেকশন গ্যাপস এবং রেডিউস ফিক্স */
+    .social-rail { 
+        display: flex; 
+        flex-direction: column;
+        margin-bottom: 60px !important; /* ফুটারের সাথে নিখুঁত দূরত্ব */
+        gap: 16px;
+        padding: 0 18px; 
+    }
 
-        /* Premium Glass Modals */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 8, 18, 0.85); display: none; align-items: center;
-            justify-content: center; z-index: 9999; padding: 20px; backdrop-filter: blur(8px);
-        }
-        .modal-content {
-            background: #0f172a; color: var(--text-main); width: 100%; max-width: 420px;
-            border-radius: 28px; padding: 35px 25px; position: relative; text-align: center;
-            border: 1px solid var(--glass-border); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        .modal-close { position: absolute; top: 20px; right: 22px; font-size: 24px; cursor: pointer; color: var(--text-muted); transition: color 0.2s; }
-        .modal-close:hover { color: #fff; }
+    .social-rail-section h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #0f172a;
+        text-align: center;
+        margin-top: 55px !important; /* ভিডিও বক্সের সাথে প্রফেশনাল গ্যাপ */
+        margin-bottom: 4px;
+        padding: 0 20px;
+        line-height: 1.4;
+    }
 
-        /* Popup Specifics */
-        .popup-item {
-            display: flex; align-items: center; justify-content: space-between; padding: 14px;
-            border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 12px;
-            text-decoration: none; color: #fff; background: rgba(255,255,255,0.01); transition: all 0.2s;
-        }
-        .popup-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); }
-        .popup-item .left { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 16px; }
-        .popup-item .middle { flex: 1; margin-left: 14px; text-align: left; }
-        .popup-item .middle h4 { font-size: 13px; margin-bottom: 2px; font-weight: 600; }
-        .popup-item .middle p { font-size: 11px; color: var(--text-muted); }
+    .title-line {
+        width: 60px;          
+        height: 5px;          
+        background: #d4af37;  
+        margin: 12px auto 24px; 
+        border-radius: 10px;  
+    }
 
-        .premium-box .premium-icon { width: 65px; height: 65px; background: rgba(255, 189, 89, 0.1); color: var(--accent-glow); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border-radius: 20px; font-size: 24px; }
-        .premium-box h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-        .premium-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 25px; }
-        .premium-item { display: flex; align-items: center; padding: 14px; border-radius: 16px; border: 1px solid var(--glass-border); margin-bottom: 14px; cursor: pointer; transition: all 0.2s; background: rgba(255,255,255,0.01); }
-        .premium-item:hover { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.15); }
-        .p-left { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; }
-        .blue { background: linear-gradient(135deg,#4f6df5,#3b4ce2); }
-        .green { background: linear-gradient(135deg,#1abc9c,#16a085); }
-        .orange { background: linear-gradient(135deg,#ff8c00,#ff5e00); }
-        .pink { background: linear-gradient(135deg,#ff0066,#ff3366); }
-        .p-middle { flex: 1; margin-left: 14px; text-align: left; }
-        .p-middle h4 { font-size: 13px; margin-bottom: 4px; color: #fff; font-weight: 600; }
-        .p-middle small { font-size: 11px; color: var(--text-muted); }
-        .tag { background: rgba(255, 189, 89, 0.15); color: var(--accent-glow); font-size: 9px; padding: 2px 7px; border-radius: 6px; margin-left: 5px; font-weight: 700; }
+    .social-chip { 
+        flex: none; 
+        width: 100%; 
+        background: #ffffff; 
+        border: 1px solid rgba(0,0,0,0.05); 
+        border-radius: 24px; 
+        padding: 24px; 
+        text-decoration: none; 
+        color: inherit; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02); 
+    }
 
-        /* Guide Popup */
-        .guide-box { padding: 0; border-radius: 28px; overflow: hidden; max-width: 440px; }
-        .guide-header { background: linear-gradient(135deg, #00f2c3, #00b4d8); padding: 35px 20px; text-align: center; color: #030812; }
-        .guide-icon { width: 60px; height: 60px; background: rgba(3, 8, 18, 0.15); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 26px; }
-        .guide-header h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-        .guide-header p { font-size: 12px; font-weight: 600; opacity: 0.8; }
-        .guide-body { padding: 25px 20px; max-height: 380px; overflow-y: auto; background: #0f172a; }
-        .guide-item { display: flex; align-items: flex-start; margin-bottom: 20px; text-align: left; }
-        .g-left { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; shrink: 0; }
-        .g-text { flex: 1; margin-left: 14px; }
-        .g-text h4 { font-size: 14px; margin-bottom: 4px; color: #fff; font-weight: 600; }
-        .g-text p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-        .guide-btn { width: 90%; margin: 5px auto 25px; display: block; padding: 15px; border: none; border-radius: 14px; background: #fff; color: #000; font-weight: 700; font-size: 14px; cursor: pointer; transition: opacity 0.2s; }
-        .guide-btn:hover { opacity: 0.9; }
+    .social-icon-box { 
+        width: 56px; 
+        height: 56px; 
+        border-radius: 16px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 22px; 
+        margin: 0 auto 16px; 
+        background: #eef2ff; 
+        color: #1877f2; 
+    }
 
-        /* Floating Futuristic Buttons */
-        .float-btns { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 12px; z-index: 999; }
-        .f-btn { 
-            width: 52px; height: 52px; border-radius: 50%; display: flex; 
-            align-items: center; justify-content: center; font-size: 20px; 
-            cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transition: all 0.3s ease;
-        }
-        .f-btn:hover { transform: scale(1.08); }
-        .btn-light { background: var(--primary-neon); color: #030812; box-shadow: 0 0 15px rgba(0,242,195,0.3); }
-        .btn-chat { background: var(--accent-glow); color: #030812; box-shadow: 0 0 15px rgba(255,189,89,0.3); }
+    .social-chip h4 { 
+        font-size: 18px; 
+        font-weight: 700; 
+        color: #0f172a; 
+        margin: 0 0 10px; 
+    }
 
-        /* Premium Chat Panel */
-        .chat-panel {
-            position: fixed; bottom: -100%; right: 25px; width: 360px; height: 500px;
-            background: #0f172a; border-radius: 24px; z-index: 10000;
-            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.4s; display: flex; flex-direction: column;
-            border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .chat-panel.open { bottom: 95px; }
-        @media (max-width: 400px) {
-            .chat-panel { right: 10px; left: 10px; width: auto; }
-        }
-        .chat-header { background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--glass-border); padding: 18px; display: flex; align-items: center; justify-content: space-between; }
-        .chat-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .bot-msg { background: rgba(255,255,255,0.04); padding: 14px; border-radius: 16px 16px 16px 4px; font-size: 13px; color: var(--text-main); max-width: 85%; line-height: 1.5; border: 1px solid var(--glass-border); }
-        .chat-input { padding: 14px; border-top: 1px solid var(--glass-border); display: flex; gap: 10px; background: rgba(0,0,0,0.1); }
-        .chat-input input { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); padding: 12px 15px; border-radius: 12px; color: white; outline: none; font-size: 13px; }
-        .chat-input input:focus { border-color: var(--accent-glow); }
-        .chat-input button { background: var(--accent-glow); border: none; width: 42px; border-radius: 12px; color: #030812; font-weight: bold; cursor: pointer; }
+    .social-chip p { 
+        font-size: 13.5px; 
+        color: #64748b; 
+        line-height: 1.6; 
+        margin: 0 0 16px; 
+    }
 
-        /* Premium Footer Section */
-        .footer { background: rgba(4, 9, 20, 0.95); padding: 60px 20px 30px; border-top: 1px solid var(--glass-border); }
-        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-        .footer p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-        .footer h4 { font-size: 15px; margin-bottom: 20px; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .footer ul { list-style: none; }
-        .footer li { color: var(--text-muted); font-size: 13px; margin-bottom: 12px; cursor: pointer; transition: color 0.2s; }
-        .footer li:hover { color: var(--primary-neon); }
-        .social-links-footer { display: flex; gap: 14px; margin-top: 20px; }
-        .social-links-footer i { font-size: 18px; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
-        .social-links-footer i:hover { opacity: 1; }
+    .fb-bg { background: rgba(24, 119, 242, 0.14); color: #1877f2; }
+    .wa-bg { background: rgba(37, 211, 102, 0.14); color: #25d366; }
+    .yt-bg { background: rgba(255, 0, 0, 0.14); color: #ff0000; }
+
+    .social-chip .join-btn { 
+        font-size: 14px; 
+        font-weight: 700; 
+        color: #0f172a; 
+        display: flex; 
+        align-items: center; 
+        gap: 6px; 
+        justify-content: center;
+    }
+
+    /* ================= FOOTER & BOTTOM NAV ================= */
+    .app-footer {
+        background-color: #0b1528; 
+        padding: 40px 24px 40px;
+        font-family: 'Inter', sans-serif;
+        color: #94a3b8;
+        text-align: left; 
+        margin-bottom: 0 !important; /* নিচে বাড়তি সাদা স্পেস বন্ধ */
+    }
+
+    .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .footer-brand h2 {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .footer-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #64748b;
+        margin: 0 0 24px 0;
+    }
+
+    .footer-social-icons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 35px;
+    }
+    .social-circle-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .social-circle-btn.fb { color: #3b5998; border-color: rgba(59, 89, 152, 0.3); }
+    .social-circle-btn.group { color: #4f46e5; border-color: rgba(79, 70, 229, 0.3); }
+    .social-circle-btn.wa { color: #22c55e; border-color: rgba(34, 197, 94, 0.3); }
+    .social-circle-btn.yt { color: #ef4444; border-color: rgba(239, 68, 68, 0.3); }
+    .social-circle-btn.tg { color: #0ea5e9; border-color: rgba(14, 165, 233, 0.3); }
+
+    .footer-links-group {
+        margin-bottom: 30px;
+    }
+    .footer-links-group h3 {
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 16px 0;
+    }
+    .footer-links-group ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-links-group ul li {
+        margin-bottom: 12px;
+    }
+    .footer-links-group ul li a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s;
+    }
+    .footer-links-group ul li a:hover {
+        color: #ffffff;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 24px;
+        text-align: center; 
+        margin-top: 20px;
+    }
+    .footer-bottom .copyright {
+        font-size: 11px;
+        color: #475569;
+        margin: 0 0 6px 0;
+    }
+    .footer-bottom .creator {
+        font-size: 11px;
+        color: #475569;
+        margin: 0;
+    }
+    .footer-bottom .dot {
+        font-size: 8px;
+        vertical-align: middle;
+        margin: 0 2px;
+    }
+
+    .bottom-nav {
+        position: fixed; bottom: 0; left: 0; width: 100%; height: var(--bottom-nav-h);
+        background: rgba(21,18,31,0.96); border-top: 1px solid var(--line);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; z-index: 900;
+    }
+    .bottom-nav button { flex: 1; background: none; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--muted); font-size: 10px; font-weight: 600; cursor: pointer; }
+    .bottom-nav button i { font-size: 17px; }
+    .bottom-nav button.emph { color: var(--coral); }
+
+    /* ================= MODALS & OVERLAYS ================= */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(9, 7, 15, 0.84); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 20px; backdrop-filter: blur(6px); }
+    .modal-close { position: absolute; top: 18px; right: 20px; font-size: 22px; cursor: pointer; color: var(--muted); z-index: 10; }
+    
+    /* প্রিমিয়াম গাইডলাইন পপআপ স্ট্রাকচার */
+    .modal-content {
+        background: #ffffff;
+        border-radius: 32px; 
+        overflow: hidden;
+        max-width: 420px;
+        width: 100%;
+        margin: auto;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        position: relative;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .modal-header-gradient {
+        background: linear-gradient(135deg, #a7ffd6 0%, #3bf0b4 100%);
+        padding: 35px 24px 28px;
+        text-align: center;
+        position: relative;
+    }
+
+    .close-modal-btn {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .header-spark-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 16px;
+        margin: 0 auto 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f59e0b; 
+        font-size: 22px;
+    }
+
+    .modal-header-gradient h2 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #ffffff;
+        margin: 0 0 6px 0;
+    }
+
+    .modal-header-gradient p {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.95);
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 24px 20px;
+        max-height: 400px; 
+        overflow-y: auto;
+        background: #ffffff;
+    }
+
+    .guide-box {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+        padding: 4px;
+    }
+
+    .guide-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: #ffffff;
+        flex-shrink: 0;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .blue-gradient { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .purple-gradient { background: linear-gradient(135deg, #a855f7, #6b21a8); }
+    .green-gradient { background: linear-gradient(135deg, #10b981, #047857); }
+    .orange-gradient { background: linear-gradient(135deg, #f97316, #c2410c); }
+    .indigo-gradient { background: linear-gradient(135deg, #6366f1, #4338ca); }
+    .red-gradient { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+    .guide-text { flex-grow: 1; }
+    .guide-text h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a; 
+        margin: 0 0 6px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .guide-text h3 .arrow-icon { font-size: 11px; color: #cbd5e1; }
+    .guide-text p { font-size: 13px; color: #475569; line-height: 1.6; margin: 0; text-align: left; }
+
+    .modal-footer-btn {
+        padding: 16px 20px 24px;
+        background: #ffffff;
+        border-top: 1px solid #f1f5f9;
+    }
+    .modal-footer-btn button {
+        width: 100%;
+        background: #0b1528; 
+        color: #3bf0b4; 
+        border: none;
+        padding: 15px;
+        border-radius: 16px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* অন্যান্য পপআপ আইটেম স্টাইল */
+    .popup-item { display: flex; align-items: center; justify-content: space-between; padding: 13px; border-radius: var(--radius-md); border: 1px solid rgba(0,0,0,0.06); margin-bottom: 10px; text-decoration: none; color: #000; background: #f8fafc; }
+    .popup-item .left { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 11px; font-size: 15px; flex-shrink: 0; }
+    .popup-item .middle { flex: 1; margin-left: 13px; text-align: left; }
+    .popup-item .middle h4 { font-size: 13px; color: #0f172a; margin: 0 0 2px 0; font-weight: 600; }
+    .popup-item .middle p { font-size: 11px; color: #64748b; margin: 0; }
+
+    .premium-box { padding: 30px 20px !important; }
+    .premium-box .premium-icon { width: 60px; height: 60px; background: var(--coral-dim); color: var(--coral); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; border-radius: 18px; font-size: 22px; }
+    .premium-box h2 { font-family: var(--font-body); font-size: 20px; font-weight: 700; margin-bottom: 6px; color: #0f172a; }
+    .premium-box p { font-size: 13px; color: #64748b; margin-bottom: 22px; }
+    .premium-item { display: flex; align-items: center; padding: 13px; border-radius: 14px ; border: 1px solid #f1f5f9 ; margin-bottom: 12px; cursor: pointer; background: #f8fafc; }
+    .p-left { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; color: white; font-size: 15px; flex-shrink: 0; }
+    
+    .red { background: linear-gradient(135deg,#ff4d4d,#d93636); }
+    .green { background: linear-gradient(135deg,#1abc9c,#16a085); }
+    .purple { background: linear-gradient(135deg,#8b5cf6,#6d28d9); }
+    .blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .orange { background: linear-gradient(135deg, #FF9800, #F57C00); }
+    
+    .p-middle { flex: 1; margin-left: 13px; text-align: left; }
+    .p-middle h4 { font-size: 13px; margin: 0 0 4px 0; color: #0f172a; font-weight: 600; }
+    .p-middle small { font-size: 11px; color: #64748b; }
+    .tag-pill { background: var(--coral-dim); color: var(--coral); font-size: 9px; padding: 2px 7px; border-radius: 6px; margin-left: 5px; font-weight: 700; }
+
+    /* ================= CHAT PANEL ================= */
+    .chat-panel { position: fixed; bottom: -100%; right: 12px; left: 12px; width: auto; max-width: 400px; margin: 0 auto; height: 480px; background: var(--panel); border-radius: 22px; z-index: 10000; transition: bottom 0.35s ease; display: flex; flex-direction: column; border: 1px solid var(--line); box-shadow: 0 16px 34px rgba(0,0,0,0.4); }
+    .chat-panel.open { bottom: calc(var(--bottom-nav-h) + 14px); }
+    .chat-header { background: rgba(255,255,255,0.02); border-bottom: 1px solid var(--line); padding: 16px; display: flex; align-items: center; justify-content: space-between; color: white;}
+    .chat-body { flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 13px; }
+    .bot-msg { background: rgba(255,255,255,0.05); padding: 13px; border-radius: 15px 15px 15px 4px; font-size: 13px; color: var(--text); max-width: 85%; line-height: 1.5; border: 1px solid var(--line); text-align: left; }
+    .user-msg { background: var(--coral); color: #1a0f0a; padding: 12px; border-radius: 15px 15px 4px 15px; font-size: 13px; font-weight: 600; max-width: 85%; margin-left: auto; text-align: right; }
+    .chat-input { padding: 13px; border-top: 1px solid var(--line); display: flex; gap: 9px; background: rgba(0,0,0,0.15); }
+    .chat-input input { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid var(--line); padding: 11px 14px; border-radius: 11px; color: white; font-size: 13px; }
+    .chat-input button { background: var(--violet); border: none; width: 40px; border-radius: 11px; color: #1a0f0a; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div class="notice-container">
-        <div class="top-notice notice-gold" onclick="openPop('socialPop')">
-            <p><i class="fas fa-share-alt" style="margin-right: 8px;"></i> আমাদের সকল সোশ্যাল প্ল্যাটফর্মে যুক্ত থাকার জন্য ক্লিক করুন</p>
-            <i class="fas fa-arrow-right"></i>
+    <div class="promo-list">
+        <div class="promo-row-item social-row" onclick="openPop('socialPop')">
+            <div class="promo-row-left">
+                <i class="fas fa-share-alt"></i>
+                <span>আমাদের সকল সোশ্যাল প্ল্যাটফর্মে যুক্ত থাকার জন্য ক্লিক করুন</span>
+            </div>
+            <i class="fas fa-chevron-right"></i>
         </div>
-        <div class="top-notice notice-dark" onclick="openPop('premiumPop')">
-            <p><i class="fas fa-lock" style="margin-right: 8px;"></i> প্রিমিয়াম ওয়ার্ক সাবমিট করার জন্য এখানে ক্লিক করুন</p>
-            <i class="fas fa-arrow-right"></i>
+        <div class="promo-row-item premium-row" onclick="openPop('premiumPop')">
+            <div class="promo-row-left">
+                <i class="fas fa-lock"></i>
+                <span>প্রিমিয়াম ওয়ার্ক সাবমিট করার জন্য এখানে ক্লিক করুন</span>
+            </div>
+            <i class="fas fa-chevron-right"></i>
         </div>
     </div>
 
-    <header>
-        <div class="brand">
-            <div class="brand-icon"><i class="fas fa-infinity"></i></div>
-            <div style="text-align: left;">
+    <header class="app-bar">
+        <div class="app-bar-left">
+            <div class="brand-icon"><i class="icon-ie"></i></div>
+            <div>
                 <h1>Infinity Earning</h1>
                 <p>E-LEARNING PLATFORM</p>
             </div>
         </div>
-
-        <div class="hero">
-            <span class="hero-badge">⚡ Advanced Learning Portal</span>
-            <h2>Master New Skills<br>with <span>Expert Tutorials</span></h2>
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchBox" placeholder="Search tutorials by title...">
-            </div>
+        <div class="app-bar-actions">
+            <button class="icon-btn" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+            <button class="icon-btn" onclick="openPop('premiumPop')"><i class="fas fa-lock"></i></button>
+            <button class="icon-btn" onclick="openPop('socialPop')"><i class="fas fa-share-alt"></i></button>
         </div>
     </header>
 
-    <div class="filter-container">
-        <button class="filter-btn active" data-cat="all">All Courses</button>
-        <button class="filter-btn" data-cat="video editing">Video Editing</button>
-        <button class="filter-btn" data-cat="photo editing">Photo Editing</button>
-        <button class="filter-btn" data-cat="data entry">Data Entry</button>
-        <button class="filter-btn" data-cat="digital marketing">Digital Marketing</button>
+    <div class="search-bar" id="searchBar">
+        <div class="box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchBox" placeholder="Search tutorials by title...">
+        </div>
     </div>
 
-    <div class="video-section-container">
-        <div id="videoList"></div>
+    <div class="hero-section">
+        <span class="hero-badge">INFINITY EARNING E-LEARNING PLATFORM</span>
+        <h2>Master New Skills<br>with <span>Expert Tutorials</span></h2>
     </div>
 
-    <section class="social-section">
+    <div class="category-rail">
+        <div class="cat-row row-3">
+            <button class="cat-chip active" data-cat="all">
+                <span class="cat-circle"><i class="fas fa-layer-group"></i></span>
+                <small>All</small>
+            </button>
+            <button class="cat-chip" data-cat="video editing">
+                <span class="cat-circle"><i class="fas fa-film"></i></span>
+                <small>Video Editing</small>
+            </button>
+            <button class="cat-chip" data-cat="photo editing">
+                <span class="cat-circle"><i class="fas fa-image"></i></span>
+                <small>Photo Editing</small>
+            </button>
+        </div>
+        <div class="cat-row row-2">
+            <button class="cat-chip" data-cat="data entry">
+                <span class="cat-circle"><i class="fas fa-keyboard"></i></span>
+                <small>Data Entry</small>
+            </button>
+            <button class="cat-chip" data-cat="digital marketing">
+                <span class="cat-circle"><i class="fas fa-bullhorn"></i></span>
+                <small>Digital Marketing</small>
+            </button>
+        </div>
+        <div class="cat-row row-1">
+            <button class="cat-chip" data-cat="freelancing">
+                <span class="cat-circle"><i class="fas fa-laptop-code"></i></span>
+                <small>Freelancing</small>
+            </button>
+        </div>
+    </div>
+
+    <main class="feed">
+        <div id="videoList" class="feed-list"></div>
+    </main>
+
+    <section class="social-rail-section">
         <h2>আমাদের সোশ্যাল প্ল্যাটফর্মগুলোতে জয়েন করুন</h2>
-        <div class="divider"></div>
-
-        <div class="social-grid">
-            <a href="https://www.facebook.com/share/17MNewVM33/" target="_blank" class="social-card">
+        <div class="title-line"></div> 
+        
+        <div class="social-rail">
+            <a href="https://www.facebook.com/share/1Dmanv7XZi/" target="_blank" class="social-chip">
                 <div class="social-icon-box fb-bg"><i class="fab fa-facebook-f"></i></div>
                 <h4>Official Facebook Page</h4>
-                <p>আমাদের অফিসিয়াল ফেসবুক পেজে জয়েন করুন। যেকোনো ধরণের সমস্যা বা তথ্য জানার জন্য সরাসরি পেজে মেসেজ করে সাপোর্ট নিতে পারেন।</p>
+                <p>আমাদের অফিসিয়াল ফেসবুক পেজে জয়েন করুন। যেকোনো ধরনের সমস্যা বা তথ্য জানার জন্য সরাসরি পেজে মেসেজ করে সাপোর্ট নিতে পারবেন।</p>
                 <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
             </a>
-
-            <a href="https://www.facebook.com/share/g/18KYZhGKr2/" target="_blank" class="social-card">
+            <a href="https://www.facebook.com/share/g/1LnyM5g2U8/" target="_blank" class="social-chip">
                 <div class="social-icon-box fb-bg"><i class="fas fa-users"></i></div>
                 <h4>Official Facebook Group</h4>
-                <p>নিচের লিংকে ক্লিক করে আমাদের অফিসিয়াল ফেসবুক গ্রুপে জয়েন করুন। উইথড্র দেওয়ার পর অবশ্যই গ্রুপে পেমেন্টের স্ক্রিনশট শেয়ার করতে হবে।</p>
+                <p>নিচের লিংকে ক্লিক করে আমাদের অফিসিয়াল ফেসবুক গ্রুপে জয়েন করুন। উইথড্র নেওয়ার পর অবশ্যই গ্রুপে আপনার পেমেন্টের স্ক্রিনশট শেয়ার করে একটি ফিডব্যাক দিতে হবে।।</p>
                 <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
             </a>
-
-            <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" target="_blank" class="social-card">
+            <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" target="_blank" class="social-chip">
                 <div class="social-icon-box wa-bg"><i class="fab fa-whatsapp"></i></div>
                 <h4>WhatsApp Channel</h4>
-                <p>আমাদের অফিসিয়াল হোয়াটসঅ্যাপ চ্যানেলে জয়েন করুন। এখানে নিয়মিত পেমেন্ট প্রুফ এবং গুরুত্বপূর্ণ আপডেট শেয়ার করা হয়।</p>
+                <p>আমাদের অফিসিয়াল হোয়াটসঅ্যাপ চ্যানেলে জয়েন করুন। এখানে নিয়মিত পেমেন্ট প্রুফ এবং আপডেট শেয়ার করা হয় exports.</p>
                 <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
             </a>
-
-            <a href="https://youtube.com/@infinityearning-ie?si=qlFqw1SF66dmpDYO" target="_blank" class="social-card">
+            <a href="https://youtube.com/@infinityearning-ie?si=d8auofnr3C0uVdtG" target="_blank" class="social-chip">
                 <div class="social-icon-box yt-bg"><i class="fab fa-youtube"></i></div>
                 <h4>YouTube Channel</h4>
-                <p>আমাদের ইউটিউব চ্যানেলে অবশ্যই Subscribe করে রাখবেন। কাজ সম্পর্কিত সকল গাইডলাইন ও ভিডিও আপডেট এখানে শেয়ার করা হবে।</p>
+                <p>আমাদের ইউটিউব চ্যানেলে জয়েন করে অবশ্যই Subscribe করে রাখবেন। কাজ সম্পর্কিত সকল গাইডলাইন ও ভিডিও আপডেট এখানে শেয়ার করা হবে।</p>
+                <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
+            </a>
+            <a href="https://t.me/Infinityearnin" target="_blank" class="social-chip">
+                <div class="social-icon-box fb-bg" style="background: rgba(14, 165, 233, 0.14); color: #0ea5e9;"><i class="fab fa-telegram-plane"></i></div>
+                <h4>Telegram Group</h4>
+                <p>নিচের লিংকে ক্লিক করে আমাদের টেলিগ্রাম গ্রুপে জয়েন করুন। এখানে বিভিন্ন গুরুত্বপূর্ণ আপডেট ও নোটিশ দেওয়া হয়।</p>
                 <div class="join-btn">Join Now <i class="fas fa-chevron-right"></i></div>
             </a>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-grid">
-            <div>
-                <div class="footer-logo">
-                    <div class="brand-icon" style="font-size: 16px; padding: 8px; border-radius: 10px;"><i class="fas fa-infinity"></i></div>
-                    <h1 style="font-size: 18px; font-weight: 800;">Infinity Earning</h1>
-                </div>
-                <p>Infinity Earning is a leading e-learning platform dedicated to providing high-quality tutorials and resources for digital skills.</p>
-                <div class="social-links-footer">
-                    <i class="fab fa-facebook" style="color: #1877f2;"></i>
-                    <i class="fab fa-whatsapp" style="color: #25d366;"></i>
-                    <i class="fab fa-youtube" style="color: #ff0000;"></i>
-                    <i class="fab fa-telegram" style="color: #0088cc;"></i>
-                </div>
-            </div>
-            <div>
-                <h4>Quick Links</h4>
-                <ul>
-                    <li>All Courses</li>
-                    <li>Premium Work</li>
-                    <li>Infinity Agent</li>
-                    <li>Success Stories</li>
-                </ul>
-            </div>
-            <div>
-                <h4>Support</h4>
-                <ul>
-                    <li>Help Center</li>
-                    <li>Terms of Service</li>
-                    <li>Privacy Policy</li>
-                    <li>Contact US</li>
-                </ul>
-            </div>
+    <footer class="app-footer">
+        <div class="footer-brand">
+            <div class="brand-icon"><i class="icon-ie"></i></div>
+            <h2>Infinity Earning</h2>
         </div>
-
-        <div style="padding-top: 25px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 12px;">
-            © 2026 All Rights Reserved By Infinity Earning.<br>
-            <span style="font-size: 11px; opacity: 0.7;">Created For The Community Platform</span>
+        <p class="footer-desc">
+            Infinity Earning is a leading e-learning platform dedicated to providing high-quality tutorials and resources for digital skills. Join our community and start your journey today.
+        </p>
+        <div class="footer-social-icons">
+            <a href="https://www.facebook.com/share/1Dmanv7XZi/" class="social-circle-btn fb"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/share/g/1LnyM5g2U8/" class="social-circle-btn group"><i class="fas fa-users"></i></a>
+            <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" class="social-circle-btn wa"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@infinityearning-ie?si=d8auofnr3C0uVdtG" class="social-circle-btn yt"><i class="fab fa-youtube"></i></a>
+            <a href="https://t.me/Infinityearnin" class="social-circle-btn tg"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <div class="footer-links-group">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">All Courses</a></li>
+                <li><a href="#">Premium Work</a></li>
+                <li><a href="#">Infinity Agent</a></li>
+                <li><a href="#">Success Stories</a></li>
+            </ul>
+        </div>
+        <div class="footer-links-group">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 All rights reserved by Infinity Earning.</p>
+            <p class="creator">Created by Infinity Earning <span class="dot">🔴</span> for the community</p>
         </div>
     </footer>
 
-    <!-- POPUPS -->
+    <nav class="bottom-nav">
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-house"></i>Home</button>
+        <button onclick="openPop('guidePop')"><i class="far fa-lightbulb"></i>Guide</button>
+        <button class="emph" onclick="toggleChat()"><i class="fas fa-robot"></i>Chat</button>
+        <button onclick="openPop('premiumPop')"><i class="fas fa-lock"></i>Premium</button>
+    </nav>
+
     <div class="modal-overlay" id="premiumPop">
         <div class="modal-content premium-box">
             <span class="modal-close" onclick="closePop('premiumPop')">&times;</span>
             <div class="premium-icon"><i class="fas fa-lock"></i></div>
             <h2>প্রিমিয়াম ওয়ার্ক সাপোর্ট</h2>
             <p>নিচের যেকোনো একটি কাজ নির্বাচন করুন</p>
-
             <div class="premium-item" onclick="showError()">
-                <div class="p-left blue"><i class="fas fa-file-alt"></i></div>
+                <div class="p-left red"><i class="fas fa-file-alt"></i></div>
                 <div class="p-middle">
-                    <h4>Data Entry Work <span class="tag">HIGH PAYING</span></h4>
+                    <h4>Data Entry Work <span class="tag-pill">HIGH PAYING</span></h4>
                     <small>Professional data submission...</small>
                 </div>
-                <i class="fas fa-lock" style="color: var(--text-muted);"></i>
+                <i class="fas fa-lock" style="color: var(--muted);"></i>
             </div>
             <div class="premium-item" onclick="showError()">
                 <div class="p-left green"><i class="fas fa-keyboard"></i></div>
                 <div class="p-middle">
-                    <h4>Typing Work <span class="tag">EXCLUSIVE</span></h4>
+                    <h4>Typing Work <span class="tag-pill">EXCLUSIVE</span></h4>
                     <small>Accurate speed typing tasks...</small>
                 </div>
-                <i class="fas fa-lock" style="color: var(--text-muted);"></i>
+                <i class="fas fa-lock" style="color: var(--muted);"></i>
+            </div>
+            <div class="premium-item" onclick="showError()">
+                <div class="p-left blue"><i class="fas fa-file-alt"></i></div>
+                <div class="p-middle">
+                    <h4>Form Fill Up Work <span class="tag-pill">PRO</span></h4>
+                    <small>Bulk form submission &...</small>
+                </div>
+                <i class="fas fa-lock" style="color: var(--muted);"></i>
+            </div>
+            <div class="premium-item" onclick="showError()">
+                <div class="p-left orange"><i class="fas fa-envelope"></i></div>
+                <div class="p-middle">
+                    <h4>Email Marketing Work <span class="tag-pill">PREMIUM</span></h4>
+                    <small>Strategic campaign...</small>
+                </div>
+                <i class="fas fa-lock" style="color: var(--muted);"></i>
             </div>
         </div>
     </div>
 
     <div class="modal-overlay" id="errorPop">
-        <div class="modal-content">
-            <div style="color: #ff5252; font-size: 55px; margin-bottom: 20px;"><i class="far fa-times-circle"></i></div>
-            <p style="font-weight: 600; line-height: 1.6; font-size: 14px;">আপনি এই কাজটি করার জন্য এখনো প্রস্তুত নন। কাজটি করতে হলে অবশ্যই আপনাকে পূর্বের কাজগুলো সম্পন্ন করতে হবে যা টিম লিডার আপনাদের দিয়েছেন।</p>
-            <button onclick="closePop('errorPop')" style="margin-top: 25px; background: #fff; color: #000; border: none; padding: 12px 35px; border-radius: 12px; font-weight: bold; cursor: pointer;">ফিরে যান</button>
+        <div class="modal-content" style="padding: 40px 20px;">
+            <span class="modal-close" onclick="closePop('errorPop')">&times;</span>
+            <div style="color: #ff5c5c; font-size: 50px; margin-bottom: 18px;"><i class="far fa-times-circle"></i></div>
+            <p style="font-weight: 600; line-height: 1.6; font-size: 14px; color: #000;">আপনি এই কাজটি করার জন্য এখনো প্রস্তুত নন। কাজটি করতে হলে অবশ্যই আপনাকে পূর্বের কাজগুলো সম্পন্ন করতে হবে যা টিম লিডার আপনাদের দিয়েছেন।</p>
+            <button onclick="closePop('errorPop')" style="margin-top: 22px; background: #0b1528; color: #3bf0b4; border: none; padding: 12px 32px; border-radius: 12px; font-weight: bold; cursor: pointer;">ফিরে যান</button>
         </div>
     </div>
 
     <div class="modal-overlay" id="guidePop">
-        <div class="modal-content guide-box">
-            <span class="modal-close" onclick="closePop('guidePop')" style="color:#000; z-index:11;">&times;</span>
-            <div class="guide-header">
-                <div class="guide-icon"><i class="fas fa-magic"></i></div>
+        <div class="modal-content">
+            <div class="modal-header-gradient">
+                <button class="close-modal-btn" onclick="closePop('guidePop')">&times;</button>
+                <div class="header-spark-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
                 <h2>সফলতার মূলমন্ত্র</h2>
-                <p>Infinity Earning-এ আপনার ক্যারিয়ার গড়ার গাইডলাইন</p>
+                <p>Infinity Earning-এ আপনার ক্যারিয়ার গড়ার সেরা গাইডলাইন</p>
             </div>
-            <div class="guide-body">
-                <div class="guide-item">
-                    <div class="g-left blue"><i class="fas fa-chart-line"></i></div>
-                    <div class="g-text">
-                        <h4>কঠিন পরিশ্রম ও নিষ্ঠা</h4>
-                        <p>নতুন অবস্থায় জয়েন করার পর নিয়মিত কাজ করতে হবে। ধৈর্য ধরে এগিয়ে যান সফলতা আসবেই।</p>
+
+            <div class="modal-body">
+                <div class="guide-box">
+                    <div class="guide-icon-box blue-gradient"><i class="fas fa-chart-line"></i></div>
+                    <div class="guide-text">
+                        <h3>কঠোর পরিশ্রম ও নিষ্ঠা <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>নতুন অবস্থায় জয়েন করার পর অবশ্যই আপনাকে কাজ করতে হবে। অলসতা পরিহার করে কাজে মনোযোগী হতে হবে।</p>
                     </div>
                 </div>
-                <div class="guide-item">
-                    <div class="g-left purple"><i class="fas fa-users"></i></div>
-                    <div class="g-text">
-                        <h4>নিয়মিত মিটিংয়ে অংশগ্রহণ</h4>
-                        <p>নিয়মিত মিটিংয়ে জয়েন করতে হবে, অন্যথায় কাজের গুরুত্বপূর্ণ আপডেট বুঝতে পারবেন না।</p>
+
+                <div class="guide-box">
+                    <div class="guide-icon-box purple-gradient"><i class="fas fa-users"></i></div>
+                    <div class="guide-text">
+                        <h3>নিয়মিত মিটিংয়ে অংশগ্রহণ <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>নিয়মিত মিটিংয়ে জয়েন করতে হবে, অন্যথায় কাজের ধরন এবং গুরুত্বপূর্ণ আপডেটগুলো বোঝা যাবে না।</p>
+                    </div>
+                </div>
+
+                <div class="guide-box">
+                    <div class="guide-icon-box green-gradient"><i class="fas fa-video"></i></div>
+                    <div class="guide-text">
+                        <h3>ক্লাসে মনোযোগ ও শিক্ষা <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>নিয়মিত ক্লাসে জয়েন করতে হবে এবং টিচার যেভাবে শিখাচ্ছেন ঠিক সেভাবে সঠিকভাবে শিখতে হবে।</p>
+                    </div>
+                </div>
+
+                <div class="guide-box">
+                    <div class="guide-icon-box orange-gradient"><i class="fas fa-tasks"></i></div>
+                    <div class="guide-text">
+                        <h3>ডেইলি ওয়ার্ক সাবমিট <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>নিয়মিত ক্লাসের কাজগুলো (Work) সাবমিট করতে হবে। প্রতিদিনের কাজ প্রতিদিন নির্দিষ্ট সময়েই শেষ করতে হবে।</p>
+                    </div>
+                </div>
+
+                <div class="guide-box">
+                    <div class="guide-icon-box indigo-gradient"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="guide-text">
+                        <h3>টিম লিডার ও ট্রেইনার গাইডলাইন <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>টিম লিডার এবং টিম ট্রেইনারের দেওয়া সকল গাইডলাইন ও নির্দেশনা সবসময় মেনে চলতে হবে। এটি আপনার সফলতার জন্য অত্যন্ত জরুরি।</p>
+                    </div>
+                </div>
+
+                <div class="guide-box">
+                    <div class="guide-icon-box red-gradient"><i class="fas fa-shield-alt"></i></div>
+                    <div class="guide-text">
+                        <h3>অ্যাকাউন্ট নিরাপত্তা <i class="fas fa-chevron-right arrow-icon"></i></h3>
+                        <p>আপনার অ্যাকাউন্টের পাসওয়ার্ড সবসময় সুরক্ষিত রাখতে হবে। এটি আপনার ব্যক্তিগত সম্পদ, তাই কাউকে শেয়ার করবেন না।</p>
                     </div>
                 </div>
             </div>
-            <button class="guide-btn" onclick="closePop('guidePop')">✔️ আমি সবগুলো নিয়ম মেনে চলব</button>
+
+            <div class="modal-footer-btn">
+                <button type="button" onclick="closePop('guidePop')">
+                    <i class="far fa-check-circle"></i> আমি সবগুলো নিয়ম মেনে চলব
+                </button>
+            </div>
         </div>
     </div>
 
     <div class="modal-overlay" id="socialPop">
-        <div class="modal-content" style="border-radius:24px; padding:30px 20px;">
+        <div class="modal-content" style="border-radius:22px; padding:28px 20px;">
             <span class="modal-close" onclick="closePop('socialPop')">&times;</span>
-            <h2 style="font-size:20px; font-weight:800; margin-bottom:8px;">আমাদের সোশ্যাল প্ল্যাটফর্ম</h2>
-            <p style="font-size:13px; color: var(--text-muted); margin-bottom:20px;">নিচের লিংকে ক্লিক করে যুক্ত হোন</p>
-
-            <a href="https://www.facebook.com/share/17MNewVM33/" target="_blank" class="popup-item">
-                <div class="left" style="background: rgba(24,119,242,0.1); color:#1877f2;"><i class="fab fa-facebook-f"></i></div>
-                <div class="middle"><h4>Official Facebook Page</h4><p>আমাদের অফিসিয়াল পেজ...</p></div>
-                <i class="fas fa-chevron-right" style="color: var(--text-muted); font-size:12px;"></i>
+            <h2 style="font-family: var(--font-body); font-size:20px; font-weight:700; margin-bottom:8px; color:#0f172a;">আমাদের সব সোশ্যাল প্ল্যাটফর্ম</h2>
+            <p style="font-size:13px; color: #64748b; margin-bottom:18px;">নিচের লিঙ্কে ক্লিক করে আমাদের সাথে যুক্ত হন</p>
+            <a href="https://www.facebook.com/share/1Dmanv7XZi/" target="_blank" class="popup-item">
+                <div class="left" style="background: rgba(24,119,242,0.14); color:#1877f2;"><i class="fab fa-facebook-f"></i></div>
+                <div class="middle"><h4>Official Facebook Page</h4><p>আমাদের অফিসিয়াল...</p></div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size:12px;"></i>
+            </a>
+            <a href="https://www.facebook.com/share/g/1LnyM5g2U8/" target="_blank" class="popup-item">
+                <div class="left" style="background: rgba(24,119,242,0.14); color:#1877f2;"><i class="fas fa-users"></i></div>
+                <div class="middle"><h4>Official Facebook Group</h4><p>ক্লিক করে আমাদের সা...</p></div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size:12px;"></i>
             </a>
             <a href="https://whatsapp.com/channel/0029Vb7ONVd72WTn73xMKN3j" target="_blank" class="popup-item">
-                <div class="left" style="background: rgba(37,211,102,0.1); color:#25d366;"><i class="fab fa-whatsapp"></i></div>
-                <div class="middle"><h4>WhatsApp Channel</h4><p>চ্যানেল ফলো করুন...</p></div>
-                <i class="fas fa-chevron-right" style="color: var(--text-muted); font-size:12px;"></i>
+                <div class="left" style="background: rgba(37,211,102,0.14); color:#25d366;"><i class="fab fa-whatsapp"></i></div>
+                <div class="middle"><h4>WhatsApp Channel</h4><p>আমাদের অফিসিয়াল...</p></div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size:12px;"></i>
+            </a>
+            <a href="https://youtube.com/@infinityearning-ie?si=d8auofnr3C0uVdtG" target="_blank" class="popup-item">
+                <div class="left" style="background: rgba(239,68,68,0.14); color:#ef4444;"><i class="fab fa-youtube"></i></div>
+                <div class="middle"><h4>YouTube Channel</h4><p>আমাদের অফিসিয়াল...</p></div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size:12px;"></i>
+            </a>
+            <a href="https://t.me/Infinityearnin" target="_blank" class="popup-item">
+                <div class="left" style="background: rgba(14, 165, 233, 0.14); color: #0ea5e9;"><i class="fab fa-telegram-plane"></i></div>
+                <div class="middle"><h4>Telegram Group</h4><p>লিঙ্কে ক্লিক করে আমাদের সাথে...</p></div>
+                <i class="fas fa-chevron-right" style="color: var(--muted); font-size:12px;"></i>
             </a>
         </div>
     </div>
 
-    <div class="modal-overlay" id="videoPop">
-        <div class="modal-content" style="background: #030812; padding: 0; width: 95%; max-width: 600px; border-radius: 20px; overflow: hidden;">
-            <span class="modal-close" onclick="closePop('videoPop')" style="color: white; z-index: 10; top: 15px; right: 15px;">&times;</span>
-            <div id="videoContainer" style="width: 100%; aspect-ratio: 16/9; background: #000;"></div>
-            <div style="padding: 20px; text-align: left;">
-                <h3 id="vTitle" style="font-size: 16px; color: #fff;"></h3>
-                <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">This is a comprehensive premium tutorial provided by Infinity Earning...</p>
+    <div class="modal-overlay" id="videoPop" style="align-items: center; justify-content: center; background: linear-gradient(135deg, #0b1b34 0%, #122845 50%, #1b3554 100%); backdrop-filter: blur(8px); padding: 20px;">
+        <div class="modal-content" style="background: transparent; border: none; padding: 0; width: 100%; max-width: 450px; height: 85vh; display: flex; flex-direction: column; justify-content: space-between; align-items: center; box-shadow: none;">
+            <div style="height: 10px;"></div>
+            <div style="width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 24px; overflow: hidden; position: relative;">
+                <span class="modal-close" onclick="closePop('videoPop')" style="color: #fff; background: rgba(255,255,255,0.15); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; top: 14px; right: 14px; position: absolute; z-index: 12;">&times;</span>
+                <div id="videoContainer" style="width: 100%; height: 100%;"></div>
+            </div>
+            <div style="padding: 0 32px 20px; text-align: center; width: 100%;">
+                <h3 id="vTitle" style="font-size: 18px; font-weight: 700; color: #fff; margin: 0 0 10px;"></h3>
+                <p style="font-size: 13.5px; color: var(--muted); opacity: 0.6; margin: 0;">This is a comprehensive tutorial on infinity earning..</p>
             </div>
         </div>
     </div>
 
-    <!-- Live Agent Support Chat -->
     <div class="chat-panel" id="chatAgent">
         <div class="chat-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="background: var(--accent-glow); padding: 8px; border-radius: 8px; color: #000;"><i class="fas fa-robot"></i></div>
+                <div style="background: var(--coral); padding: 8px; border-radius: 8px; color: #1a0f0a;"><i class="fas fa-robot"></i></div>
                 <div>
-                    <h4 style="font-size: 13px; font-weight: 700;">Infinity Agent</h4>
-                    <p style="font-size: 10px; color: var(--primary-neon);">● ONLINE SUPPORT</p>
+                    <h4 style="font-size: 13px; font-weight: 700; margin: 0;">Infinity Agent</h4>
+                    <p style="font-size: 10px; color: var(--violet); margin: 0;">● ONLINE SUPPORT</p>
                 </div>
             </div>
-            <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer; color: var(--text-muted);"></i>
+            <i class="fas fa-times" onclick="toggleChat()" style="cursor: pointer; color: var(--muted);"></i>
         </div>
         <div class="chat-body" id="chatBox">
-            <div class="bot-msg">স্বাগতম! আমি ইনফিনিটি এজেন্ট। ইনফিনিটি আর্নিং-এর পক্ষ থেকে আপনাকে সাহায্য করতে প্রস্তুত। আপনাকে কিভাবে সাহায্য করতে পারি?</div>
+            <div class="bot-msg">স্বাগতম! আমি ইউনিটি এজেন্ট। আপনাকে কিভাবে সাহায্য করতে পারি?</div>
         </div>
         <div class="chat-input">
             <input type="text" id="chatInp" placeholder="আপনার প্রশ্ন লিখুন...">
@@ -496,36 +919,15 @@
         </div>
     </div>
 
-    <div class="float-btns">
-        <div class="f-btn btn-light" onclick="openPop('guidePop')"><i class="far fa-lightbulb"></i></div>
-        <div class="f-btn btn-chat" onclick="toggleChat()"><i class="fas fa-robot"></i></div>
-    </div>
-
     <script>
+        // Modal UI Controls
         function openPop(id) { document.getElementById(id).style.display = 'flex'; }
-        function closePop(id) { 
-            document.getElementById(id).style.display = 'none'; 
-            if(id === 'videoPop') document.getElementById('videoContainer').innerHTML = '';
-        }
-        function showError() { closePop('premiumPop'); openPop('errorPop'); }
+        function closePop(id) { document.getElementById(id).style.display = 'none'; if(id==='videoPop') document.getElementById('videoContainer').innerHTML=''; }
+        function showError() { openPop('errorPop'); }
+        function toggleSearch() { document.getElementById('searchBar').classList.toggle('open'); }
         function toggleChat() { document.getElementById('chatAgent').classList.toggle('open'); }
-        
-        function sendMsg() {
-            let inp = document.getElementById('chatInp');
-            let box = document.getElementById('chatBox');
-            if(!inp.value) return;
-            box.innerHTML += `<div style="background: var(--primary-neon); color: #000; padding: 12px; border-radius: 16px 16px 4px 16px; font-size: 13px; font-weight:600; max-width: 85%; margin-left: auto;">${inp.value}</div>`;
-            let userTxt = inp.value;
-            inp.value = '';
-            box.scrollTop = box.scrollHeight;
-            setTimeout(() => {
-                box.innerHTML += `<div class="bot-msg">দুঃখিত, বর্তমানে লাইভ চ্যাট এজেন্ট অফলাইন রয়েছে। জরুরী সহায়তার জন্য অনুগ্রহ করে আপনার টিম লিডারের সাথে যোগাযোগ করুন।</div>`;
-                box.scrollTop = box.scrollHeight;
-            }, 1000);
-        }
     </script>
 
-    <!-- Firebase Integration & Fixed Filtering Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -541,7 +943,7 @@
 
         const videoList = document.getElementById("videoList");
         const searchBox = document.getElementById("searchBox");
-        const filterBtns = document.querySelectorAll(".filter-btn");
+        const catChips = document.querySelectorAll(".cat-chip");
 
         let allVideos = [];
         let selectedCategory = "all";
@@ -552,9 +954,8 @@
             return match ? match[1] : "";
         }
 
-        // Global play video function setup
         window.playVideo = function(id, title){
-            document.getElementById('vTitle').innerText = title;
+            document.getElementById('vTitle').innerText = "Infinity Earning: " + title;
             document.getElementById('videoContainer').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
             document.getElementById('videoPop').style.display = "flex";
         }
@@ -570,49 +971,53 @@
             });
 
             if(filtered.length === 0){
-                videoList.innerHTML = "<p style='color:var(--text-muted); text-align:center; grid-column: 1/-1; padding: 40px;'>কোনো টিউটোরিয়াল খুঁজে পাওয়া যায়নি।</p>";
+                videoList.innerHTML = "<p style='color:var(--muted); text-align:center; padding:20px;'>কোনো টিউটোরিয়াল খুঁজে পাওয়া যায়নি। খুব শীঘ্রই এড করা হবে ইনশাআল্লাহ।</p>";
                 return;
             }
 
+            const frag = document.createDocumentFragment();
             filtered.forEach(v => {
                 let vid = getVideoId(v.link);
                 if(!vid) return;
 
-                videoList.innerHTML += `
-                <div class="video-card">
-                    <div class="thumb-wrapper">
-                        <img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="thumbnail">
-                        <span class="video-tag">${v.category || "General"}</span>
+                let today = new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'short', day: '2-digit' });
+
+                const row = document.createElement('div');
+                row.className = 'feed-item';
+                row.innerHTML = `
+                    <div class="feed-thumb">
+                        <img src="https://img.youtube.com/vi/${vid}/mqdefault.jpg" alt="thumbnail" loading="lazy">
+                        <span class="tag">${v.category || "General"}</span>
                     </div>
-                    <div class="card-body">
-                        <span class="card-date"><i class="far fa-clock"></i> Premium Tutorial</span>
+                    <div class="feed-info">
+                        <div class="feed-date"><i class="far fa-clock"></i> ${today}</div>
                         <h3>${v.title || "Untitled Video"}</h3>
-                        <p>This is a comprehensive premium tutorial provided by Infinity Earning E-learning Platform.</p>
-                        <button class="watch-btn" onclick="playVideo('${vid}','${v.title?.replace(/'/g, "\\'")}')">
-                            Watch Now <i class="fas fa-play" style="font-size: 10px;"></i>
-                        </button>
+                        <p>This is a comprehensive tutorial on ${v.category || "Infinity earning"} tutorial provided by Infinity Earning...</p>
                     </div>
-                </div>`;
+                    <div class="watch-now-btn">Watch Now <i class="fas fa-chevron-right" style="font-size: 10px;"></i></div>`;
+                
+                row.addEventListener('click', () => window.playVideo(vid, v.title || "Untitled Video"));
+                frag.appendChild(row);
             });
+            videoList.appendChild(frag);
         }
 
-        // Live Firestore updates
         const q = collection(db, "videos");
         onSnapshot(q, (snapshot) => {
             allVideos = [];
-            snapshot.forEach(doc => {
-                allVideos.push(doc.data());
-            });
+            snapshot.forEach(doc => { allVideos.push(doc.data()); });
             renderVideos();
         });
 
-        // Search Input Event
-        searchBox.addEventListener("input", renderVideos);
+        let searchTimer;
+        searchBox.addEventListener("input", () => {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(renderVideos, 150);
+        });
 
-        // Filter Buttons Click Events
-        filterBtns.forEach(btn => {
+        catChips.forEach(btn => {
             btn.addEventListener("click", () => {
-                filterBtns.forEach(b => b.classList.remove("active"));
+                catChips.forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 selectedCategory = btn.dataset.cat;
                 renderVideos();
