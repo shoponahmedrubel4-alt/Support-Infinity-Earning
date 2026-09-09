@@ -1,0 +1,276 @@
+/* =====================================================================
+   Infinity Earning — "Aurora Glass" Redesign
+   পুরনো React কোড/JS স্পর্শ না করেই, শুধু CSS override দিয়ে সম্পূর্ণ নতুন
+   একটি ভিজ্যুয়াল ভাষা তৈরি করা হয়েছে: রঙিন gradient-mesh ব্যাকগ্রাউন্ড +
+   ভাসমান frosted-glass প্যানেল + অর্গানিক শেপ। এই ফাইলটি @layer এর বাইরে
+   থাকায় Tailwind এর ইউটিলিটি ক্লাসের উপর স্বয়ংক্রিয়ভাবে override হয়।
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #171330;
+  --ink-soft: #4b4368;
+  --violet: #7C3AED;
+  --violet-deep: #4C1D95;
+  --cyan: #06B6D4;
+  --amber: #F5A623;
+  --pink: #EC4899;
+  --glass-light: rgba(255, 255, 255, 0.62);
+  --glass-light-border: rgba(255, 255, 255, 0.9);
+  --glass-dark: rgba(23, 19, 48, 0.72);
+  --glass-dark-border: rgba(255, 255, 255, 0.14);
+  --r-lg: 34px;
+  --r-md: 22px;
+}
+
+* { font-family: 'Inter', 'Hind Siliguri', var(--font-sans); }
+.font-display { font-family: 'Space Grotesk', 'Hind Siliguri', var(--font-display) !important; letter-spacing: -0.02em; }
+html { scroll-behavior: smooth; }
+
+/* ---------------------------------------------------------------------
+   Canvas: colorful fixed mesh gradient behind the entire page
+   --------------------------------------------------------------------- */
+html, body {
+  background-color: #F3F1FB;
+  background-image:
+    radial-gradient(circle at 8% 10%, rgba(124,58,237,0.24) 0%, transparent 38%),
+    radial-gradient(circle at 92% 8%, rgba(6,182,212,0.22) 0%, transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(245,166,35,0.20) 0%, transparent 42%),
+    radial-gradient(circle at 10% 65%, rgba(236,72,153,0.16) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(124,58,237,0.14) 0%, transparent 45%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.min-h-screen.bg-slate-50 { background: transparent !important; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--cyan), var(--violet)); border-radius: 10px; }
+::selection { background: var(--violet); color: #fff; }
+
+/* ---------------------------------------------------------------------
+   Promo banners → floating pill notifications instead of full-width bars
+   --------------------------------------------------------------------- */
+.bg-gradient-to-r.from-brand-gold.via-yellow-400.to-brand-gold,
+.bg-brand-navy.py-3.px-6.text-center.border-b {
+  background: none !important;
+  padding: 10px 16px 4px !important;
+  border: none !important;
+}
+.bg-gradient-to-r.from-brand-gold.via-yellow-400.to-brand-gold > button,
+.bg-brand-navy.py-3.px-6.text-center.border-b > button {
+  background: var(--glass-dark);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-dark-border);
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(76,29,149,0.18);
+}
+.bg-gradient-to-r.from-brand-gold.via-yellow-400.to-brand-gold > button span,
+.bg-brand-navy.py-3.px-6.text-center.border-b > button span {
+  color: var(--amber) !important;
+}
+.bg-brand-navy.py-3.px-6.text-center.border-b > button span { color: var(--cyan) !important; }
+.bg-gradient-to-r.from-brand-gold.via-yellow-400.to-brand-gold .absolute.inset-0,
+.bg-brand-navy.py-3.px-6.text-center.border-b .absolute.inset-0 { display: none; }
+
+/* ---------------------------------------------------------------------
+   Nav → floating glass pill bar (not edge-to-edge)
+   --------------------------------------------------------------------- */
+nav.sticky.top-0 {
+  background: transparent !important;
+  border: none !important;
+  padding: 14px 20px 0 !important;
+}
+nav.sticky.top-0 > div {
+  background: var(--glass-dark);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-dark-border);
+  border-radius: 999px;
+  padding: 12px 28px !important;
+  box-shadow: 0 12px 34px rgba(76,29,149,0.20);
+}
+nav .bg-brand-gold.rounded-lg {
+  background: linear-gradient(135deg, var(--amber), var(--pink));
+  border-radius: 14px;
+}
+nav button.bg-brand-gold {
+  background: linear-gradient(135deg, var(--cyan), var(--violet)) !important;
+  color: #fff !important;
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(124,58,237,0.35);
+}
+nav a.text-white\/70:hover, nav button.text-brand-gold { color: var(--cyan) !important; }
+nav p.text-brand-teal { color: var(--cyan) !important; }
+
+/* ---------------------------------------------------------------------
+   Hero → floating dark-glass "bento" panel with organic blob accents
+   --------------------------------------------------------------------- */
+header.relative.bg-brand-navy {
+  background: transparent !important;
+  padding: 40px 20px 120px !important;
+}
+header.relative.bg-brand-navy > .absolute { display: none; }
+header.relative.bg-brand-navy > div.max-w-4xl {
+  background: var(--glass-dark);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-dark-border);
+  border-radius: var(--r-lg);
+  padding: 64px 40px;
+  max-width: 880px;
+  box-shadow: 0 30px 80px -20px rgba(76,29,149,0.35);
+  position: relative;
+  overflow: hidden;
+}
+header.relative.bg-brand-navy > div.max-w-4xl::before {
+  content: "";
+  position: absolute;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, rgba(6,182,212,0.55), transparent 70%);
+  top: -160px; left: -120px;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+header.relative.bg-brand-navy > div.max-w-4xl::after {
+  content: "";
+  position: absolute;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(245,166,35,0.45), transparent 70%);
+  bottom: -150px; right: -100px;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+header .inline-block.rounded-full.bg-brand-teal\/10 {
+  background: rgba(6,182,212,0.14);
+  border: 1px solid rgba(6,182,212,0.4);
+  color: var(--cyan) !important;
+  position: relative; z-index: 2;
+}
+header h2.font-display { position: relative; z-index: 2; text-shadow: none; }
+header h2 .text-brand-gold {
+  background: linear-gradient(90deg, var(--amber), var(--pink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+header .relative.z-10 > div { position: relative; z-index: 2; }
+
+header input[placeholder="Search tutorials..."] {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+header input[placeholder="Search tutorials..."]:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(6,182,212,0.25);
+}
+
+header .flex.flex-wrap.justify-center.gap-3 button { border-radius: 999px; transition: all .25s ease; }
+header .flex.flex-wrap.justify-center.gap-3 button.bg-brand-teal {
+  background: linear-gradient(135deg, var(--cyan), var(--violet)) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(124,58,237,0.35);
+  border-color: transparent !important;
+}
+header .flex.flex-wrap.justify-center.gap-3 button.bg-white\/5:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+/* ---------------------------------------------------------------------
+   Main content → glass cards floating on the colorful mesh canvas
+   --------------------------------------------------------------------- */
+main { margin-top: -70px !important; position: relative; z-index: 5; }
+
+.col-span-full.py-20.text-center {
+  background: var(--glass-light);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-light-border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 30px 70px -25px rgba(76,29,149,0.25);
+}
+.col-span-full .bg-slate-100.rounded-full {
+  background: linear-gradient(135deg, #ede9fe, #fdf2f8);
+}
+.col-span-full h3.font-display { color: var(--ink); }
+.col-span-full p.text-slate-500 { color: var(--ink-soft); }
+
+section h2.font-display, main h2.font-display { color: var(--ink); }
+section .w-20.h-1\.5.bg-brand-gold {
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  height: 6px;
+  border-radius: 999px;
+}
+
+/* Social / join cards — glass, asymmetric radius, per-brand accent glow via href match */
+a.group.bg-white.rounded-\[32px\] {
+  background: var(--glass-light);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-light-border);
+  border-radius: 30px 30px 30px 8px;
+  box-shadow: 0 20px 45px -22px rgba(76,29,149,0.28);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+}
+a.group.bg-white.rounded-\[32px\]:hover {
+  transform: translateY(-8px) rotate(-0.6deg);
+  box-shadow: 0 34px 60px -20px rgba(76,29,149,0.4);
+}
+a.group h3.font-display { color: var(--ink); }
+a.group p.text-slate-500 { color: var(--ink-soft); }
+a.group .w-16.h-16.rounded-2xl { border-radius: 20px; }
+
+a.group[href*="facebook.com/share"]:hover { box-shadow: 0 34px 60px -20px rgba(59,89,152,0.45); }
+a.group[href*="facebook.com/groups"]:hover { box-shadow: 0 34px 60px -20px rgba(29,78,216,0.45); }
+a.group[href*="whatsapp.com"]:hover { box-shadow: 0 34px 60px -20px rgba(16,185,129,0.45); }
+a.group[href*="youtube.com"]:hover { box-shadow: 0 34px 60px -20px rgba(239,68,68,0.45); }
+a.group[href*="t.me"]:hover { box-shadow: 0 34px 60px -20px rgba(14,165,233,0.45); }
+
+a.group .text-brand-navy.font-bold { color: var(--ink); }
+a.group:hover .text-brand-navy.font-bold,
+a.group .group-hover\:text-brand-gold { color: var(--violet) !important; }
+
+/* ---------------------------------------------------------------------
+   Footer → floating dark-glass rounded panel (not edge-to-edge)
+   --------------------------------------------------------------------- */
+footer.bg-brand-navy {
+  background: transparent !important;
+  border: none !important;
+  padding: 20px 20px 40px !important;
+}
+footer.bg-brand-navy > div.max-w-7xl {
+  background: var(--glass-dark);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-dark-border);
+  border-radius: var(--r-lg);
+  padding: 56px 44px 28px;
+  box-shadow: 0 30px 70px -25px rgba(76,29,149,0.3);
+}
+footer .bg-brand-gold.rounded-lg { background: linear-gradient(135deg, var(--amber), var(--pink)); border-radius: 14px; }
+footer a.rounded-full.bg-white\/5 { transition: all .25s ease; }
+footer a.rounded-full.bg-white\/5:hover { transform: translateY(-3px); border-color: var(--cyan) !important; color: var(--cyan) !important; }
+footer ul li a:hover { color: var(--cyan) !important; }
+footer .border-t.border-white\/5 { border-color: rgba(255,255,255,0.1) !important; }
+
+/* ---------------------------------------------------------------------
+   Floating action buttons — glowing glass orbs
+   --------------------------------------------------------------------- */
+button.fixed.bottom-24, button.fixed.bottom-6 {
+  backdrop-filter: blur(6px);
+  box-shadow: 0 14px 34px rgba(76,29,149,0.35);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+button.fixed.bottom-24:hover, button.fixed.bottom-6:hover { transform: translateY(-3px) scale(1.06); }
+button.fixed.bottom-24.bg-brand-teal { background: linear-gradient(135deg, var(--cyan), var(--violet)) !important; }
+button.fixed.bottom-6.bg-brand-gold { background: linear-gradient(135deg, var(--amber), var(--pink)) !important; }
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+@media (max-width: 640px) {
+  header.relative.bg-brand-navy > div.max-w-4xl { padding: 44px 22px; border-radius: 26px; }
+  footer.bg-brand-navy > div.max-w-7xl { padding: 40px 22px 20px; border-radius: 26px; }
+  main { margin-top: -40px !important; }
+}
